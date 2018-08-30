@@ -60,8 +60,6 @@ The query is formatted as a [standard feathers query](https://docs.feathersjs.co
 
 **skip** _\<number>_ - Number of records to skip
 
-**disablePagination** _\<boolean>_- Kind of speaks for itself...
-
 **liveUpdate** <boolean> - If true, subscribe to changes and re-run the query if any changes are detected to the loaded queries.
 
 **transform** <function> - Transformation function to run on data before it's passed down.
