@@ -9,8 +9,10 @@ import {
   FeathersQuery,
   FeathersGet,
   ASC,
-  DESC
+  DESC,
+  FeathersService
 } from "../src/index";
+import { isArray } from "util";
 
 storiesOf("Welcome", module)
   .add("FeathersQuery", () => (
@@ -51,6 +53,51 @@ storiesOf("Welcome", module)
           </div>
         )}
         liveUpdate
+      />
+    </FeathersApp>
+  ))
+  .add("FeathersService", () => (
+    <FeathersApp host={"localhost"} port={3030}>
+      <FeathersQuery
+        service={"test"}
+        limit={1}
+        liveUpdate
+        render={({ recordCount = 0, error, data }) => (
+          <React.Fragment>
+            <div>
+              {error && error.message}
+              <br />
+              Total Records: {recordCount}
+              <br />
+              FirstRecord:
+              <pre>{isArray(data) && JSON.stringify(data[0], null, 2)} </pre>
+            </div>
+
+            <FeathersService
+              name={"test"}
+              render={({ create, removeAll, patch }) => {
+                return (
+                  <React.Fragment>
+                    <button onClick={() => create({ timestamp: Date.now() })}>
+                      +
+                    </button>
+
+                    <button onClick={removeAll}>Clear</button>
+                    {isArray(data) && (
+                      <button
+                        onClick={() =>
+                          patch(data[0].id, { timestamp: Date.now() })
+                        }
+                      >
+                        Patch
+                      </button>
+                    )}
+                  </React.Fragment>
+                );
+              }}
+            />
+          </React.Fragment>
+        )}
       />
     </FeathersApp>
   ));
