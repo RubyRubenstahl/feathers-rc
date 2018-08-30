@@ -8,19 +8,35 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RubyRubenstahl/feathers-rc.git"
+  },
   "author": "Ruby Rubenstahl",
   "license": "MIT",
   "peerDependencies": {
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@feathersjs/express": "^1.2.3",
+    "@feathersjs/socketio-client": "^1.1.0",
+    "feathers-memory": "^2.2.0",
+    "lodash.isarray": "^4.0.0",
+    "lodash.isfunction": "^3.0.9",
+    "lodash.isnil": "^4.0.0",
+    "lodash.isobject": "^3.0.2"
+  },
   "devDependencies": {
-    "@storybook/react": "^3.4.10",
+    "@feathersjs/feathers": "^3.1.7",
+    "@feathersjs/socketio": "^3.2.2",
     "@storybook/addon-actions": "^3.4.10",
     "@storybook/addon-links": "^3.4.10",
     "@storybook/addons": "^3.4.10",
+    "@storybook/react": "^3.4.10",
     "babel-core": "^6.26.3",
-    "babel-runtime": "^6.26.0"
+    "babel-runtime": "^6.26.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
   }
 }
