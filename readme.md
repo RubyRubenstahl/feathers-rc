@@ -181,3 +181,9 @@ Use with sort prop `<FeathersQuery>` to sort items in ascending order
 
 **DESC** = -1 -
 Use with sort prop `<FeathersQuery>` to sort items in descending order
+
+## TBD
+
+- Make change detection more efficient.
+- Make sure change detection covers a reasonable range of use-cases
+- Testing
