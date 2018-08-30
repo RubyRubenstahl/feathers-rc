@@ -34,15 +34,16 @@ This component _must_ wrap all other feathers-rc components.
 Fetches an arbitrary number of
 
 ```jsx
-<FeathersQuery
-  service={"service-name"}
-  query={{ roomId: 5 }}
-  limit={10}
-  skip={3}
-  liveUpdate={true}
->
-  <ChildComponent />
-</FeathersQuery>
+<FeathersApp host={"localhost"} port={3030}>
+  <FeathersQuery
+    service="test"
+    query={{ roomId: 5 }}
+    limit={10}
+    skip={3}
+    liveUpdate={true}
+    render={({ recordCount }) => <div>Count: {recordCount}</div>}
+  />
+</FeathersApp>
 ```
 
 #### Props
@@ -108,9 +109,9 @@ The query is formatted as a [standard feathers query](https://docs.feathersjs.co
 Fetches a single object by its id
 
 ```jsx
-<FeathersGet service={"my-service"} id={objId}>
-  <ChildComponent />
-</FeathersGet>
+<FeathersApp host={"localhost"} port={3030}>
+  <FeathersGet service="my-service" id={itemId} render={MyDataViewCompoonent} />
+</FeathersApp>
 ```
 
 #### Props
