@@ -23,7 +23,7 @@ export class FeathersApp extends React.Component {
   };
 
   componentWillMount() {
-    const { host, port = 80 } = this.props;
+    const { host = "localhost", port = 80 } = this.props;
     this.socket = io(`//${host}:${port}`);
     this.app = feathers();
     this.app.configure(socketio(this.socket));
