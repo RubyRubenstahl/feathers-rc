@@ -1,5 +1,17 @@
 # Feathers React Components
 
+`feathers-rc` is a collection of React components designed to make building react apps backed by feathersjs a delightful experience.
+
+`FeathersApp` acts as a root component, which provides access to the feathers app to other components contained within it.
+
+`FeathersGet` and `FeathersQuery` allow you to declaritively query the server, passing data and other releavent data.
+
+`
+
+## IMPORTANT!
+
+Please not that this package is in early development and **is not production ready!!!**
+
 ## Installation
 
 `npm install --save feathers-rc`
@@ -187,3 +199,4 @@ Use with sort prop `<FeathersQuery>` to sort items in descending order
 - Make change detection more efficient.
 - Make sure change detection covers a reasonable range of use-cases
 - Testing
+- Configure webpack/babel, etc
