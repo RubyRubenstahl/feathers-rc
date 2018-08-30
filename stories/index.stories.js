@@ -1,19 +1,33 @@
-import React from 'react';
+import React from "react";
 
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { linkTo } from '@storybook/addon-links';
+import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
+import { linkTo } from "@storybook/addon-links";
 
-import { Button, Welcome } from '@storybook/react/demo';
+import { FeathersApp, FeathersQuery, ASC, DESC } from "../src/index";
 
-storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
-
-storiesOf('Button', module)
-  .add('with text', () => <Button onClick={action('clicked')}>Hello Button</Button>)
-  .add('with some emoji', () => (
-    <Button onClick={action('clicked')}>
-      <span role="img" aria-label="so cool">
-        😀 😎 👍 💯
-      </span>
-    </Button>
-  ));
+storiesOf("Welcome", module).add("to Storybook", () => (
+  <FeathersApp host={"localhost"} port={3030}>
+    <FeathersQuery
+      service="test"
+      query={{ id: { $gt: 10 } }}
+      skip={0}
+      limit={8}
+      sort={{ id: ASC }}
+      // select={["test"]}
+      disablePagination
+      render={({ recordCount, data, error, paginated }) => (
+        <div>
+          {error && error.message}
+          <br />
+          Total Records: {recordCount}
+          <br />
+          Paginated: {JSON.stringify(paginated)}
+          <br />
+          data: <pre>{JSON.stringify(data, null, 2)} </pre>
+        </div>
+      )}
+      liveUpdate
+    />
+  </FeathersApp>
+));
