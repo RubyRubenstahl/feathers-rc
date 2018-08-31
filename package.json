@@ -2,7 +2,7 @@
   "name": "feathers-rc",
   "version": "0.0.1",
   "description": "React components to make make your app take flight with feathersjs. ",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
