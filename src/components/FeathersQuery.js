@@ -127,8 +127,10 @@ class FeathersQuery extends React.Component {
   }
 
   render() {
+    const service =
+      this.props.app && this.props.app.service(this.props.service);
     return this.props.render
-      ? this.props.render({ ...this.props, ...this.state })
+      ? this.props.render({ ...this.props, ...this.state, service })
       : null;
   }
 }
