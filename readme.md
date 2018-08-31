@@ -64,7 +64,7 @@ Fetches an arbitrary number of
 
 The query is formatted as a [standard feathers query](https://docs.feathersjs.com/api/databases/querying.html).
 
-**sort** _\<object>_ - An object in which the key is the data key to sort by, and the value is equal 1 for ascending or -1 for descending. ASC and DESC constants are exported from the library for your convenience. See the [sorting documentation](https://docs.feathersjs.com/api/databases/querying.html#sort) in the feathers docs for more info.
+**sort** _\<number>_ - An object in which the key is the data key to sort by, and the value is equal 1 for ascending or -1 for descending. ASC and DESC constants are exported from the library for your convenience. See the [sorting documentation](https://docs.feathersjs.com/api/databases/querying.html#sort) in the feathers docs for more info.
 
 **select** _\<[string]>_ - An array of strings containing the keys to include in the response data. If not specified, the entire document is returned.
 
