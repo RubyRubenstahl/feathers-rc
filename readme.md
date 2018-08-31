@@ -78,6 +78,8 @@ The query is formatted as a [standard feathers query](https://docs.feathersjs.co
 
 #### Child Properties
 
+**app** _\<object>_ - Access the app directly when needed
+
 **data** <object, array, or null> - The data returned from the query.
 
 - Null if the query has not been returned or has no data.
@@ -94,6 +96,8 @@ The query is formatted as a [standard feathers query](https://docs.feathersjs.co
 **prevPage** _\<number>_ - The start index of the previous page (use with skip). Null if no more pages available or pagination is disabled.
 
 **recordCount** _\<number>_ - Total nunber or record found in the query. Null if the data is not included
+
+**service** _\<object>_ - Direct access to the service the query was run on. 
 
 **error** _\<object>_ - Error object, if holding any error producted by the most recent request. Will be null if no error was reported.
 
@@ -147,7 +151,7 @@ Fetches a single object by its id
 
 **hasData** _\<boolean>_ - True if the normalized data is not null, empty array, or empty object
 
-**service** _\<object>_ - Direct access to the service, should you need it
+**service** _\<object>_ - Direct access to the service the query was run on. 
 
 **transform** _\<function>_ - Transformation function to run on data before it's passed down.
 
