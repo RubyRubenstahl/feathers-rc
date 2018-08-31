@@ -1,6 +1,6 @@
 {
   "name": "feathers-rc",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "React components to make make your app take flight with feathersjs. ",
   "main": "dist/index.js",
   "scripts": {
