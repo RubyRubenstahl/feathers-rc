@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "build": "babel src -d dist --copy-files",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,7 @@
     "react-dom": "^16.4.2"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
     "@feathersjs/express": "^1.2.3",
     "@feathersjs/socketio-client": "^1.1.0",
     "feathers-memory": "^2.2.0",
@@ -31,14 +34,17 @@
     "lodash.unionby": "^4.8.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
     "@feathersjs/feathers": "^3.1.7",
     "@feathersjs/socketio": "^3.2.2",
     "@storybook/addon-actions": "^3.4.10",
     "@storybook/addon-links": "^3.4.10",
     "@storybook/addons": "^3.4.10",
     "@storybook/react": "^3.4.10",
-    "babel-core": "^6.26.3",
-    "babel-runtime": "^6.26.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
   }
