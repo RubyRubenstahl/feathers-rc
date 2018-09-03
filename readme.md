@@ -64,7 +64,7 @@ Fetches an arbitrary number of
 
 The query is formatted as a [standard feathers query](https://docs.feathersjs.com/api/databases/querying.html).
 
-**sort** _\<object>_ - An object in which the key is the data key to sort by, and the value is equal 1 for ascending or -1 for descending. ASC and DESC constants are exported from the library for your convenience. See the [sorting documentation](https://docs.feathersjs.com/api/databases/querying.html#sort) in the feathers docs for more info.
+**sort** _\<number>_ - An object in which the key is the data key to sort by, and the value is equal 1 for ascending or -1 for descending. ASC and DESC constants are exported from the library for your convenience. See the [sorting documentation](https://docs.feathersjs.com/api/databases/querying.html#sort) in the feathers docs for more info.
 
 **select** _\<[string]>_ - An array of strings containing the keys to include in the response data. If not specified, the entire document is returned.
 
@@ -77,6 +77,8 @@ The query is formatted as a [standard feathers query](https://docs.feathersjs.co
 **transform** <function> - Transformation function to run on data before it's passed down.
 
 #### Child Properties
+
+**app** _\<object>_ - Access the app directly when needed
 
 **data** <object, array, or null> - The data returned from the query.
 
@@ -94,6 +96,8 @@ The query is formatted as a [standard feathers query](https://docs.feathersjs.co
 **prevPage** _\<number>_ - The start index of the previous page (use with skip). Null if no more pages available or pagination is disabled.
 
 **recordCount** _\<number>_ - Total nunber or record found in the query. Null if the data is not included
+
+**service** _\<object>_ - Direct access to the service the query was run on. 
 
 **error** _\<object>_ - Error object, if holding any error producted by the most recent request. Will be null if no error was reported.
 
@@ -147,7 +151,7 @@ Fetches a single object by its id
 
 **hasData** _\<boolean>_ - True if the normalized data is not null, empty array, or empty object
 
-**service** _\<object>_ - Direct access to the service, should you need it
+**service** _\<object>_ - Direct access to the service the query was run on. 
 
 **transform** _\<function>_ - Transformation function to run on data before it's passed down.
 
