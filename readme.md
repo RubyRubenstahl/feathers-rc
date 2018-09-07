@@ -89,15 +89,19 @@ The query is formatted as a [standard feathers query](https://docs.feathersjs.co
 
 **paginated** _\<boolean>_ - Indicates whether the response is paginated.
 
+**pageNum** _\<number>_ - Number of the current page of results.
+
+**pageCount** _\<number>_ - Number of pages available.
+
 **startIndex** _\<number>_ - Index of the first record within the query (the value passed to skip)
 
-**nextPage** _\<number>_ - The start index of the next page (use with skip). Null if no more pages available or pagination is disabled.
+**nextPageIndex** _\<number>_ - The start index of the next page (use with skip). Null if no more pages available or pagination is disabled.
 
-**prevPage** _\<number>_ - The start index of the previous page (use with skip). Null if no more pages available or pagination is disabled.
+**prevPageIndex** _\<number>_ - The start index of the previous page (use with skip). Null if no more pages available or pagination is disabled.
 
 **recordCount** _\<number>_ - Total nunber or record found in the query. Null if the data is not included
 
-**service** _\<object>_ - Direct access to the service the query was run on. 
+**service** _\<object>_ - Direct access to the service the query was run on.
 
 **error** _\<object>_ - Error object, if holding any error producted by the most recent request. Will be null if no error was reported.
 
@@ -151,7 +155,7 @@ Fetches a single object by its id
 
 **hasData** _\<boolean>_ - True if the normalized data is not null, empty array, or empty object
 
-**service** _\<object>_ - Direct access to the service the query was run on. 
+**service** _\<object>_ - Direct access to the service the query was run on.
 
 **transform** _\<function>_ - Transformation function to run on data before it's passed down.
 
