@@ -89,6 +89,8 @@ The query is formatted as a [standard feathers query](https://docs.feathersjs.co
 
 **paginated** _\<boolean>_ - Indicates whether the response is paginated.
 
+**pageCount** _\<number>_ - Number of the current pages available.
+
 **pageNum** _\<number>_ - Number of the current page of results.
 
 **pageCount** _\<number>_ - Number of pages available.
