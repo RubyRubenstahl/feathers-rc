@@ -6,6 +6,13 @@ import isArray from "lodash.isarray";
 import isObject from "lodash.isobject";
 import isFunction from "lodash.isfunction";
 import isEqual from "lodash.isequal";
+import {
+  getPageNum,
+  getPageCount,
+  getStartIndex,
+  getNextPageIndex,
+  getPrevPageIndex
+} from "../helpers/pagination";
 
 class FeathersQuery extends React.Component {
   state = {
@@ -103,11 +110,13 @@ class FeathersQuery extends React.Component {
         error: null,
         fetching: false,
         hasData: true,
-        nextpage: null,
         paginated: true,
-        prevPage: null,
-        recordCount: result.total,
-        startIndex: null
+        pageCount: getPageCount(result),
+        pageNum: getPageNum(result),
+        nextPageIndex: getNextPageIndex(result),
+        prevPageIndex: getPrevPageIndex(result),
+        startIndex: getStartIndex(result),
+        recordCount: result.total
       });
     }
 
@@ -117,11 +126,13 @@ class FeathersQuery extends React.Component {
         error: null,
         fetching: false,
         hasData: false,
-        nextpage: null,
-        paginated: false,
-        prevPage: null,
-        recordCount: 0,
-        startIndex: null
+        paginated: true,
+        pageCount: null,
+        pageNum: null,
+        nextPageIndex: null,
+        prevPageIndex: null,
+        startIndex: null,
+        recordCount: 0
       });
     }
   }

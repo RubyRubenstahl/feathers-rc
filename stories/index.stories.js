@@ -20,15 +20,35 @@ storiesOf("Welcome", module)
       <FeathersQuery
         service="test"
         query={{ id: { $gt: 10 } }}
-        skip={0}
+        skip={8}
         limit={8}
         sort={{ id: ASC }}
         transform={data => data.map(item => ({ ...item, foo: "bar" }))}
-        render={({ recordCount, data, error, paginated }) => (
+        render={({
+          recordCount,
+          data,
+          error,
+          paginated,
+          pageNum,
+          pageCount,
+          startIndex,
+          nextPageIndex,
+          prevPageIndex
+        }) => (
           <div>
             {error && error.message}
             <br />
             Total Records: {recordCount}
+            <br />
+            Page count: {pageCount}
+            <br />
+            Current Page: {pageNum}
+            <br />
+            Start Index: {startIndex}
+            <br />
+            Next Page Index: {nextPageIndex}
+            <br />
+            Prev Page Index: {prevPageIndex}
             <br />
             Paginated: {JSON.stringify(paginated)}
             <br />
