@@ -48,9 +48,9 @@ This component _must_ wrap all other feathers-rc components.
 
 ```jsx
 <App>
-<FeathersApp host={example.com} port={3030}>
+  <FeathersApp host={example.com} port={3030}>
     ... your secret sauce
-</FeathersApp>
+  </FeathersApp>
 </App>
 ```
 
@@ -149,7 +149,15 @@ The query is formatted as a [standard feathers query](https://docs.feathersjs.co
 
 **service** _\<object>_ - Direct access to the service, should you need it
 
----
+#### Child Methods
+
+**gotoNextPage()** _\<function>_ - Run the query for the next page. Ignored if we are on the last page.
+
+**gotoPrevPage()** _\<function>_ - Run the query for the prev page. Ignored if we are on the first page.
+
+**gotoFirstPage()** _\<function>_ - Run the query for the first page;
+
+**gotoLastPage()** _\<function>_ - Run the query for the last page;
 
 ### \<FeathersGet>
 
