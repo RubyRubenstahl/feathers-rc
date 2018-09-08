@@ -56,6 +56,8 @@ This component _must_ wrap all other feathers-rc components.
 
 #### Props
 
+**app** - (optional) If you need to customize your app, you can intialize it yourself and pass it in as a prop. If you do, the host and port will be ignored.
+
 **host** - Address of the host to connect to
 
 **port** - Websocket port for the host is listening on.
