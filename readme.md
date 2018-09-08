@@ -47,9 +47,11 @@ Uses the context api to provide access to the.
 This component _must_ wrap all other feathers-rc components.
 
 ```jsx
+<App>
 <FeathersApp host={example.com} port={3030}>
-  <ChildComponent />
+    ... your secret sauce
 </FeathersApp>
+</App>
 ```
 
 #### Props
