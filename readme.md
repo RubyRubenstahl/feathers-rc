@@ -6,7 +6,30 @@
 
 `FeathersGet` and `FeathersQuery` allow you to declaritively query the server, passing data and other releavent data.
 
-`
+## A contrived example
+
+```jsx
+import React, { Component } from "react";
+import { FeathersApp } from "feathers-rc";
+import TodoList from "./TodoList";
+
+class App extends Component {
+  render() {
+    return (
+      <FeathersApp host={"localhost"} port={3030}>
+        <FeathersQuery
+          service={"todos"}
+          query={{ complete: false }}
+          liveUpdate
+          render={({ data }) => <TodoList todos={data} />}
+        />
+      </FeathersApp>
+    );
+  }
+}
+
+export default App;
+```
 
 ## IMPORTANT!
 
