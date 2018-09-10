@@ -23,10 +23,15 @@ export class FeathersApp extends React.Component {
   };
 
   componentWillMount() {
-    const { host = "localhost", port = 80 } = this.props;
-    this.socket = io(`//${host}:${port}`);
-    this.app = feathers();
-    this.app.configure(socketio(this.socket));
+    const { host = "localhost", port = 80, app } = this.props;
+
+    if (app) {
+      this.app = app;
+    } else {
+      this.socket = io(`//${host}:${port}`);
+      this.app = feathers();
+      this.app.configure(socketio(this.socket));
+    }
   }
 
   render() {
@@ -39,6 +44,7 @@ export class FeathersApp extends React.Component {
 }
 
 FeathersApp.propTypes = {
-  host: propTypes.string.isRequired,
-  port: propTypes.number
+  host: propTypes.string,
+  port: propTypes.number,
+  app: propTypes.object
 };
