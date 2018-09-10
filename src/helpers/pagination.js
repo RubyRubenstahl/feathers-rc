@@ -1,4 +1,5 @@
-const getPageCount = result => Math.floor(result.total / result.limit) + 1;
+const getPageCount = result =>
+  !result || !result.limit ? 1 : Math.ceil(result.total / result.limit);
 
 const getPageNum = result => Math.floor(result.skip / result.limit) + 1;
 
