@@ -24,10 +24,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-<<<<<<< HEAD
     "@feathersjs/feathers": "^3.2.1",
-=======
->>>>>>> 6aa7c6f33746ed5237a300fd0a50592f819b37ea
     "@feathersjs/socketio-client": "^1.1.0",
     "isEqual": "^1.0.3",
     "lodash.isarray": "^4.0.0",
