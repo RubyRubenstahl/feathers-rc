@@ -1,8 +1,8 @@
 import React from "react";
 import propTypes from "prop-types";
-const feathers = require("@feathersjs/feathers");
-const socketio = require("@feathersjs/socketio-client");
-const io = require("socket.io-client");
+import feathers from "@feathersjs/feathers";
+import socketio from "@feathersjs/socketio-client";
+import io from "socket.io-client";
 
 const FeathersAppContext = React.createContext();
 
@@ -27,6 +27,8 @@ export class FeathersApp extends React.Component {
 
     if (app) {
       this.app = app;
+      this.app.host = null;
+      this.app.port = null;
     } else {
       this.socket = io(`//${host}:${port}`);
       this.app = feathers();
