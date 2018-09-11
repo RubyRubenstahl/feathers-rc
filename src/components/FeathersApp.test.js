@@ -1,15 +1,20 @@
 import React from "react";
 import { shallow, mount, render } from "enzyme";
 
-import FeathersApp from "./FeathersApp";
+import { FeathersApp } from "../";
 
 describe("<FeathersApp/>", () => {
+  const defaultFeathersApp = mount(
+    <FeathersApp>
+      <div className="unique" />
+    </FeathersApp>
+  );
+
   test("renders children when passed in", () => {
-    const wrapper = shallow(
-      <FeathersApp>
-        <div className="unique" />
-      </FeathersApp>
-    );
-    expect(wrapper.contains(<div className="unique" />)).to.equal(true);
+    expect(defaultFeathersApp.contains(<div className="unique" />)).toBe(true);
+  });
+
+  test("Creates and passes a feathers app", () => {
+    expect(defaultFeathersApp.props("app")).toBeDefined();
   });
 });
