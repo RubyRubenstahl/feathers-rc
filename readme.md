@@ -21,8 +21,9 @@ class App extends Component {
           service={"todos"}
           query={{ complete: false }}
           liveUpdate
-          render={({ data }) => <TodoList todos={data} />}
-        />
+        >
+          {({ data }) => <TodoList todos={data} />}
+        </FeathersQuery>
       </FeathersApp>
     );
   }
@@ -54,7 +55,7 @@ This component _must_ wrap all other feathers-rc components.
 </App>
 ```
 
-#### Props
+#### Input Props
 
 **app** - (optional) If you need to customize your app, you can intialize it yourself and pass it in as a prop. If you do, the host and port will be ignored.
 
@@ -80,8 +81,9 @@ Fetches an arbitrary number of
     limit={10}
     skip={3}
     liveUpdate={true}
-    render={({ recordCount }) => <div>Count: {recordCount}</div>}
-  />
+  >
+    {({ recordCount }) => <div>Count: {recordCount}</div>}
+  <FeathersQuery/>
 </FeathersApp>
 ```
 
@@ -165,11 +167,17 @@ Fetches a single object by its id
 
 ```jsx
 <FeathersApp host={"localhost"} port={3030}>
-  <FeathersGet service="my-service" id={itemId} render={MyDataViewCompoonent} />
+  <FeathersGet service="my-service" id={itemId}>
+    <MyDataViewCompoonent />
+  </FeathersGet>
 </FeathersApp>
 ```
+#### Input Props
+**service** _\<string>_ - Name of the sevice to run the query on  
 
-#### Props
+**id**  _\<string>_ - Id of the resource to request  
+
+#### Child Props
 
 **app** _\<object>_ - Direct access to the feathers app, should you need it
 
@@ -199,14 +207,14 @@ Fetches a single object by its id
 ### \<FeathersService>
 
 ```jsx
-<Service name={"service-name"}>
+<Service service={"service-name"}>
   <ChildComponent />
 </Service>
 ```
 
-#### Props
+#### Input Props
 
-name _\<string>_ - Name of the service
+service  _\<string>_ - Name of the service
 
 #### Child Properties
 
