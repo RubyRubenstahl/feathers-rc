@@ -95,8 +95,7 @@ FeathersGet.propTypes = {
   skip: propTypes.number,
   disablePagination: propTypes.bool,
   liveUpdate: propTypes.bool,
-  transform: propTypes.func,
-  render: propTypes.func
+  transform: propTypes.func
 };
 
 export default withFeathersContext(FeathersGet);
