@@ -62,12 +62,27 @@ class FeathersGet extends React.Component {
       hasData: true
     });
   }
-
+  
+  
   render() {
-    return this.props.render
-      ? this.props.render({ ...this.props, ...this.state })
-      : null;
+  
+    
+    const service =
+      this.props.app && this.props.app.service(this.props.service);
+    const childProps = { ...this.props, ...this.state, service };
+      
+    const childrenWithExtraProps = React.Children.map(this.props.children, child => {
+      return React.cloneElement(child, childProps);
+    });
+    
+    
+    return(){
+      <React.Fragment>
+        { childrenWithExtraProps }
+      </React.Fragment>
+    }
   }
+  
 }
 
 FeathersGet.propTypes = {
