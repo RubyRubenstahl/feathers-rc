@@ -138,11 +138,22 @@ class FeathersQuery extends React.Component {
   }
 
   render() {
+  
+    
     const service =
       this.props.app && this.props.app.service(this.props.service);
-    return this.props.render
-      ? this.props.render({ ...this.props, ...this.state, service })
-      : null;
+    const childProps = { ...this.props, ...this.state, service };
+      
+    const childrenWithExtraProps = React.Children.map(this.props.children, child => {
+      return React.cloneElement(child, childProps);
+    });
+    
+    
+    return(){
+      <React.Fragment>
+        { childrenWithExtraProps }
+      </React.Fragment>
+    }
   }
 }
 
