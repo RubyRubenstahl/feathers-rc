@@ -31,7 +31,7 @@ class FeathersQuery extends React.Component {
     if (this.props.app) {
       this.runQuery();
     }
-    if (this.props.liveUpdate && this.props.app) {
+    if (this.props.realtime && this.props.app) {
       this.configureListeners();
     }
   }
@@ -155,9 +155,8 @@ FeathersQuery.propTypes = {
   limit: propTypes.number,
   skip: propTypes.number,
   disablePagination: propTypes.bool,
-  liveUpdate: propTypes.bool,
-  transform: propTypes.func,
-  render: propTypes.func
+  realtime: propTypes.bool,
+  transform: propTypes.func
 };
 
 export default withFeathersContext(FeathersQuery);
