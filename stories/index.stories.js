@@ -55,7 +55,7 @@ storiesOf("Welcome", module)
             data: <pre>{JSON.stringify(data, null, 2)} </pre>
           </div>
         )}
-        liveUpdate
+        realtime
       />
     </FeathersApp>
   ))
@@ -72,7 +72,7 @@ storiesOf("Welcome", module)
             data: <pre>{JSON.stringify(data, null, 2)} </pre>
           </div>
         )}
-        liveUpdate
+        realtime
       />
     </FeathersApp>
   ))
@@ -81,7 +81,7 @@ storiesOf("Welcome", module)
       <FeathersQuery
         service={"test"}
         limit={1}
-        liveUpdate
+        realtime
         render={({ recordCount = 0, error, data }) => (
           <React.Fragment>
             <div>
