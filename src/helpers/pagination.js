@@ -4,7 +4,7 @@ const getPageCount = result =>
 const getPageNum = result =>
   !result ? 1 : Math.floor(result.skip / result.limit) + 1;
 
-const getStartIndex = result => result.skip;
+const getStartIndex = result => (!result ? null : result.skip);
 
 const getNextPageIndex = result => {
   const nextIndex = result.skip - (result.skip % result.limit) + result.limit;

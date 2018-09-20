@@ -24,6 +24,16 @@ describe("getPageCount", () => {
   });
 });
 
+describe("getStartIndex", () => {
+  test("Returns the correct start index", () => {
+    expect(getStartIndex({ skip: 5 })).toBe(5);
+  });
+
+  test("Returns the null withn nothing is passed", () => {
+    expect(getStartIndex()).toBe(null);
+  });
+});
+
 describe("getPageNum", () => {
   test("Returns 1 when nothing is passed", () => {
     expect(getPageNum()).toBe(1);
