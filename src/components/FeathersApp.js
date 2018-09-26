@@ -16,7 +16,7 @@ export const withFeathersContext = Component => {
   );
 };
 
-export class FeathersApp extends React.Component {
+export default class FeathersApp extends React.Component {
   state = {
     initialized: false,
     connected: false
