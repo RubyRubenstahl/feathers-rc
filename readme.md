@@ -54,7 +54,7 @@ This component _must_ wrap all other feathers-rc components.
 </App>
 ```
 
-#### Props
+#### Input Props
 
 **app** - (optional) If you need to customize your app, you can intialize it yourself and pass it in as a prop. If you do, the host and port will be ignored.
 
@@ -169,7 +169,15 @@ Fetches a single object by its id
 </FeathersApp>
 ```
 
-#### Props
+#### Input Props
+
+**service** _\<string>_ - Name of the sevice to run the query on
+
+**id** _\<string>_ - Id of the resource to request
+
+**render** _\<funciton | component>_ - The component or function to render. It will be passed the below props.
+
+#### Passed Props
 
 **app** _\<object>_ - Direct access to the feathers app, should you need it
 
@@ -199,33 +207,35 @@ Fetches a single object by its id
 ### \<FeathersService>
 
 ```jsx
-<Service name={"service-name"}>
+<Service service={"service-name"}>
   <ChildComponent />
 </Service>
 ```
 
-#### Props
+#### Input Props
 
-name _\<string>_ - Name of the service
+service _\<string>_ - Name of the service
 
-#### Child Properties
+**render** _\<funciton | component>_ - The component or function to render. It will be passed the below props.
+
+#### Passed Props
 
 **app** _\<object>_ - Direct access to the feathers app, should you need it
 
 **service** _\<object>_ - Direct access to the service, should you need it
 
-### Child methods
+### Passed methods
 
 **create(data)** - Create a new item on the service
 
-**update(id, data, \<query>)** - Replace the entire document(s) with the given id or query
+**update(id, data, \<params>)** - Replace the entire document(s) with the given id or query within the params object.
 
 - Use null for id to update multiple items using a query.
 - Passing null to id without specifying a query will result in an error
 
-**patch(id, data, \<query>)** - Patch an existing object \* use null for id to update multiple items using a query.
+**patch(id, data, \<params>)** - Patch an existing object \* use null for id to update multiple items using a query object in the params object.
 
-**remove(id, \<query>)** - Remove the entire document(s) with the given id or query
+**remove(id, \<params>)** - Remove the entire document(s) with the given id or query in the params object.
 _ Use null for id to update multiple items using a query.
 _ Passing null to id without specifying a query will result in an error
 
