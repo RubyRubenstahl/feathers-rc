@@ -4,7 +4,7 @@ import { withFeathersContext } from "./FeathersApp";
 
 class FeathersService extends React.Component {
   render() {
-    const service = this.props.app.service(this.props.name);
+    const service = this.props.app.service(this.props.service);
 
     return this.props.render
       ? this.props.render({
@@ -22,7 +22,7 @@ class FeathersService extends React.Component {
 
 FeathersService.propTypes = {
   app: propTypes.object.isRequired,
-  name: propTypes.string.isRequired
+  service: propTypes.string.isRequired
 };
 
 export default withFeathersContext(FeathersService);
