@@ -4,7 +4,7 @@
   "description": "React components to make make your app take flight with feathersjs. ",
   "main": "dist/index.js",
   "scripts": {
-    "test": "jest --env=jsdom",
+    "test": "jest --watchAll --env=jsdom",
     "build": "babel src -d dist --copy-files",
     "prepublishOnly": "npm run build"
   },
