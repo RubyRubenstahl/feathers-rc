@@ -11,8 +11,8 @@ class FeathersService extends React.Component {
           app: this.props.app,
           service,
           create: data => service.create(data),
-          update: (id, data, params) => service.update(id, data, {params }),
-          patch: (id, data, params) => service.patch(id, data, { params }),
+          update: (id, data, params) => service.update(id, data, params),
+          patch: (id, data, params) => service.patch(id, data, params),
           remove: (id, query) => service.remove(id, { query }),
           removeAll: () => service.remove(null)
         })
