@@ -17,12 +17,9 @@ class App extends Component {
   render() {
     return (
       <FeathersApp host={"localhost"} port={3030}>
-        <FeathersQuery
-          service={"todos"}
-          query={{ complete: false }}
-          liveUpdate
-          render={({ data }) => <TodoList todos={data} />}
-        />
+        <FeathersQuery service={"todos"} query={{ complete: false }} realtime>
+          {({ data }) => <TodoList todos={data} />}
+        </FeathersQuery>
       </FeathersApp>
     );
   }
@@ -79,9 +76,10 @@ Fetches an arbitrary number of
     query={{ roomId: 5 }}
     limit={10}
     skip={3}
-    liveUpdate={true}
-    render={({ recordCount }) => <div>Count: {recordCount}</div>}
-  />
+    realtime
+  >
+    {({ recordCount }) => <div>Count: {recordCount}</div>}
+  <FeathersQuery/>
 </FeathersApp>
 ```
 
@@ -99,7 +97,7 @@ The query is formatted as a [standard feathers query](https://docs.feathersjs.co
 
 **skip** _\<number>_ - Number of records to skip
 
-**liveUpdate** <boolean> - If true, subscribe to changes and re-run the query if any changes are detected to the loaded queries.
+**realtime** <boolean> - If true, subscribe to changes and re-run the query if any changes are detected to the loaded queries.
 
 **transform** <function> - Transformation function to run on data before it's passed down.
 
