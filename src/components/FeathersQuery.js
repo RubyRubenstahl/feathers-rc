@@ -153,7 +153,7 @@ class FeathersQuery extends React.Component {
 
 FeathersQuery.propTypes = {
   query: propTypes.object,
-  app: propTypes.object.isRequired,
+  app: propTypes.object,
   service: propTypes.string.isRequired,
   sort: propTypes.number,
   select: propTypes.arrayOf(propTypes.string),
