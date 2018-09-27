@@ -37,7 +37,7 @@ class FeathersQuery extends React.Component {
   }
 
   configureListeners() {
-    console.log("Configuring listener on service " + this.props.service);
+    // console.log("Configuring listener on service " + this.props.service);
     const service = this.props.app.service(this.props.service);
 
     service.on("created", () => this.runQuery());
@@ -59,7 +59,7 @@ class FeathersQuery extends React.Component {
 
   async runQuery() {
     this.setState({ fetching: true, error: false });
-    console.log("Running query");
+    // console.log("Running query");
     try {
       const { query, service, sort, select, limit, skip, app } = this.props;
 
@@ -81,7 +81,7 @@ class FeathersQuery extends React.Component {
       }
 
       const result = await app.service(service).find(params);
-      console.log("Query complete");
+      // console.log("Query complete");
       this.processQueryResult(result);
     } catch (e) {
       this.setState({ error: e, fetching: false });
