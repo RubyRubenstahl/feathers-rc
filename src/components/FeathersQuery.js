@@ -47,7 +47,12 @@ class FeathersQuery extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (!isEqual(this.props.query, prevProps.query)) {
+    // Run the query if the query has changed
+    // or we've just received an app for the first time.
+    if (
+      !isEqual(this.props.query, prevProps.query) ||
+      (!prevProps.app && this.props.app)
+    ) {
       this.runQuery();
     }
   }
