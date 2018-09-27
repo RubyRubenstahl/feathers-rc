@@ -43,7 +43,7 @@ app.use(express.errorHandler());
 const port = 3030;
 
 app.listen(port, () => {
-  console.log(`Feathers server listening on port ${port}`);
+  // console.log(`Feathers server listening on port ${port}`);
 });
 
 module.exports = app;
