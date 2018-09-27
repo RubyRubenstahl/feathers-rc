@@ -3,7 +3,6 @@ import { withFeathersContext } from "../components/FeathersApp";
 
 export default withFeathersContext(props => {
   const { app, host, port, initialized, connected } = props;
-
   return (
     <div data-testid="feathers-app-child">
       {app && <div data-testid="app-object" />}
