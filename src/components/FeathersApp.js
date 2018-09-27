@@ -19,26 +19,49 @@ export const withFeathersContext = Component => {
 export default class FeathersApp extends React.Component {
   state = {
     initialized: false,
-    connected: false
+    connected: false,
+    host: "localhost",
+    port: 80,
+    app: null
   };
 
-  componentWillMount() {
-    const { host = "localhost", port = 80, app } = this.props;
-
-    if (app) {
-      this.app = app;
-      this.app.host = null;
-      this.app.port = null;
+  async componentWillMount() {
+    if (this.props.app) {
+      await this.configureCustomApp();
     } else {
-      this.socket = io(`//${host}:${port}`);
-      this.app = feathers();
-      this.app.configure(socketio(this.socket));
+      this.configureDefaultApp();
     }
+  }
+
+  async configureDefaultApp() {
+    const { host, port } = this.props;
+
+    const feathersApp = await feathers();
+    this.socket = io(`//${host}:${port}`);
+    feathersApp.configure(socketio(this.socket));
+
+    const normalizedPort = port || this.state.port;
+    const normalizedHost = host || this.state.host;
+
+    this.setState({
+      host: normalizedHost,
+      port: normalizedPort,
+      app: feathersApp,
+      initialized: true
+    });
+  }
+
+  configureCustomApp() {
+    this.setState({
+      host: null,
+      port: null,
+      app: this.props.app
+    });
   }
 
   render() {
     return (
-      <FeathersAppContext.Provider value={{ ...this.state, app: this.app }}>
+      <FeathersAppContext.Provider value={this.state}>
         {this.props.children}
       </FeathersAppContext.Provider>
     );
