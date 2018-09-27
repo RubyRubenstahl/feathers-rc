@@ -5,3 +5,4 @@ examples
 .storybook
 stories
 testapp
+__tests__/
