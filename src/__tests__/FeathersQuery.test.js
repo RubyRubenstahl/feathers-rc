@@ -68,7 +68,9 @@ test("<FeathersQuery/> with simple query", async () => {
       <FeathersQuery
         query={{ value: 1 }}
         service={"test"}
-        render={FeathersQueryTest}
+        render={props => (
+          <FeathersQueryTest callback={p => console.log(p)} {...props} />
+        )}
       />
     </FeathersApp>
   );
