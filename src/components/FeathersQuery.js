@@ -1,11 +1,11 @@
 import React from "react";
 import propTypes from "prop-types";
 import { withFeathersContext } from "./FeathersApp";
-import isNil from "lodash.isnil";
-import isArray from "lodash.isarray";
-import isObject from "lodash.isobject";
-import isFunction from "lodash.isfunction";
-import isEqual from "lodash.isequal";
+import isNil from "lodash/isNil";
+import isArray from "lodash/isArray";
+import isObject from "lodash/isObject";
+import isFunction from "lodash/isFunction";
+import isEqual from "lodash/isEqual";
 import {
   getPageNum,
   getPageCount,
