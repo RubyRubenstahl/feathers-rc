@@ -9,11 +9,17 @@ export default props => {
     connected,
     data,
     paginated,
+    pageCount,
+    pageNum,
+    skip,
     hasData,
-    recordCount
+    recordCount,
+    callback
   } = props;
   // console.log(`App: ${app && JSON.stringify(app)}`);
-
+  if (hasData && callback) {
+    callback(props);
+  }
   return (
     <div data-testid="feathers-query-child">
       {app && <div data-testid="query-app-object" />}
