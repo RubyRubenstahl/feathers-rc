@@ -1,7 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
-import feathers from "@feathersjs/feathers";
-import socketio from "@feathersjs/socketio-client";
+import feathers from "@feathersjs/client";
 import io from "socket.io-client";
 
 const FeathersAppContext = React.createContext();
