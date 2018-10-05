@@ -37,7 +37,7 @@ class FeathersQuery extends React.Component {
   }
 
   configureListeners() {
-    console.log("Configuring listener on service " + this.props.service);
+    // console.log("Configuring listener on service " + this.props.service);
     const service = this.props.app.service(this.props.service);
 
     service.on("created", () => this.runQuery());
@@ -47,16 +47,30 @@ class FeathersQuery extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (!isEqual(this.props.query, prevProps.query)) {
+    // Run the query if the query has changed
+    // or we've just received an app for the first time.
+    if (
+      !isEqual(this.props.query, prevProps.query) ||
+      (!prevProps.app && this.props.app)
+    ) {
       this.runQuery();
     }
   }
 
   async runQuery() {
     this.setState({ fetching: true, error: false });
-    console.log("Running query");
+    // console.log("Running query");
     try {
-      const { query, service, sort, select, limit, skip, app } = this.props;
+      const {
+        query,
+        service,
+        sort,
+        select,
+        page,
+        limit = 10,
+        skip = 0,
+        app
+      } = this.props;
 
       const params = { query: query || {} };
       if (sort) {
@@ -67,7 +81,11 @@ class FeathersQuery extends React.Component {
         params.query.$limit = limit;
       }
 
-      if (skip) {
+      if (page !== undefined) {
+        params.query.$skip = page * limit;
+      }
+
+      if (skip !== undefined) {
         params.query.$skip = skip;
       }
 
@@ -76,7 +94,7 @@ class FeathersQuery extends React.Component {
       }
 
       const result = await app.service(service).find(params);
-      console.log("Query complete");
+      // console.log("Query complete");
       this.processQueryResult(result);
     } catch (e) {
       this.setState({ error: e, fetching: false });
@@ -148,7 +166,7 @@ class FeathersQuery extends React.Component {
 
 FeathersQuery.propTypes = {
   query: propTypes.object,
-  app: propTypes.object.isRequired,
+  app: propTypes.object,
   service: propTypes.string.isRequired,
   sort: propTypes.number,
   select: propTypes.arrayOf(propTypes.string),

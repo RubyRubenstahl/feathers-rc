@@ -93,9 +93,9 @@ The query is formatted as a [standard feathers query](https://docs.feathersjs.co
 
 **select** _\<[string]>_ - An array of strings containing the keys to include in the response data. If not specified, the entire document is returned.
 
-**limit** _\<number>_ - Number of records per page
+**limit** _\<number>_ - Number of records per page. default = 0
 
-**skip** _\<number>_ - Number of records to skip
+**skip** _\<number>_ - Number of records to skip. default = 10
 
 **realtime** <boolean> - If true, subscribe to changes and re-run the query if any changes are detected to the loaded queries.
 
