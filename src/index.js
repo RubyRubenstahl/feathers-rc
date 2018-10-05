@@ -1,7 +1,7 @@
 import "@babel/polyfill";
 
 import React from "react";
-import { FeathersApp, Feathers } from "./components/FeathersApp";
+import FeathersApp from "./components/FeathersApp";
 import FeathersQuery from "./components/FeathersQuery";
 import FeathersGet from "./components/FeathersGet";
 import FeathersService from "./components/FeathersService";
