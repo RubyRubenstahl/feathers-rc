@@ -61,7 +61,16 @@ class FeathersQuery extends React.Component {
     this.setState({ fetching: true, error: false });
     // console.log("Running query");
     try {
-      const { query, service, sort, select, limit, skip, app } = this.props;
+      const {
+        query,
+        service,
+        sort,
+        select,
+        page,
+        limit = 10,
+        skip = 0,
+        app
+      } = this.props;
 
       const params = { query: query || {} };
       if (sort) {
@@ -72,7 +81,11 @@ class FeathersQuery extends React.Component {
         params.query.$limit = limit;
       }
 
-      if (skip) {
+      if (page !== undefined) {
+        params.query.$skip = page * limit;
+      }
+
+      if (skip !== undefined) {
         params.query.$skip = skip;
       }
 
