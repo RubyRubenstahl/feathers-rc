@@ -37,7 +37,7 @@ export default class FeathersApp extends React.Component {
 
     const feathersApp = await feathers();
     this.socket = io(`//${host}:${port}`);
-    feathersApp.configure(socketio(this.socket));
+    feathersApp.configure(feathers.socketio(this.socket));
 
     const normalizedPort = port || this.state.port;
     const normalizedHost = host || this.state.host;
