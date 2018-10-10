@@ -20,8 +20,6 @@ export default {
     babel({
       exclude: "node_modules/**"
     }),
-    commonjs({
-      exclude: ["node_modules/lodashs/**"]
-    })
+    commonjs({})
   ]
 };
