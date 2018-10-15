@@ -42,7 +42,9 @@ class FeathersQuery extends React.Component {
     }
   }
   
-  
+  compenentWillUnmount(){
+    this.cleanupListeners();
+  }
 
   configureListeners() {
     // console.log("Configuring listener on service " + this.props.service);
