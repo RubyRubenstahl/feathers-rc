@@ -6,6 +6,8 @@ import isArray from "lodash/isArray";
 import isObject from "lodash/isObject";
 import isFunction from "lodash/isFunction";
 import isEqual from "lodash/isEqual";
+import map from "lodash/map";
+import mergeWith from "lodash/mergeWith";
 
 import {
   getPageNum,
@@ -14,6 +16,8 @@ import {
   getNextPageIndex,
   getPrevPageIndex
 } from "../helpers/pagination";
+
+const replaceById = (a,b) => a.id === b.id ? b : a;
 
 class FeathersQuery extends React.Component {
   this.listeners=[];
@@ -58,6 +62,8 @@ class FeathersQuery extends React.Component {
     service.removeListener("patched", this.onPatchedListener);
   }
   
+  
+  
   onCreatedListener(){
     this.runQuery();
   }
@@ -70,8 +76,11 @@ class FeathersQuery extends React.Component {
     this.runQuery();
   }
   
-  onPatchedListener(){
-    this.runQuery();
+  onPatchedListener(newData){
+    const newData = map(this.state.data, currentItem=>
+      replaceById(newData, currentItem);  
+    );
+    this.setState({data: newData});
   }
   
 
