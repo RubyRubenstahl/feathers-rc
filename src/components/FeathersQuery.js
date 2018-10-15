@@ -6,6 +6,7 @@ import isArray from "lodash/isArray";
 import isObject from "lodash/isObject";
 import isFunction from "lodash/isFunction";
 import isEqual from "lodash/isEqual";
+
 import {
   getPageNum,
   getPageCount,
@@ -15,6 +16,7 @@ import {
 } from "../helpers/pagination";
 
 class FeathersQuery extends React.Component {
+  this.listeners=[];
   state = {
     data: null,
     error: null,
@@ -35,16 +37,43 @@ class FeathersQuery extends React.Component {
       this.configureListeners();
     }
   }
+  
+  
 
   configureListeners() {
     // console.log("Configuring listener on service " + this.props.service);
     const service = this.props.app.service(this.props.service);
 
-    service.on("created", () => this.runQuery());
-    service.on("removed", () => this.runQuery());
-    service.on("updated", () => this.runQuery());
-    service.on("patched", () => this.runQuery());
+    service.on("created", this.onCreatedListener);
+    service.on("removed", this.onRemovedListener);
+    service.on("updated", this.onUpdatedListener);
+    service.on("patched", this.onPatchedListener);
   }
+
+  cleanUpListeners(){
+    const service = this.props.app.service(this.props.service);
+    service.removeListener("created", this.onCreatedListener);
+    service.removeListener("removed", this.onRemovedListener);
+    service.removeListener("updated", this.onUpdatedListener);
+    service.removeListener("patched", this.onPatchedListener);
+  }
+  
+  onCreatedListener(){
+    this.runQuery();
+  }
+  
+  onRemovedListener(){
+    this.runQuery();
+  }
+  
+  onUpdatedListener(){
+    this.runQuery();
+  }
+  
+  onPatchedListener(){
+    this.runQuery();
+  }
+  
 
   componentDidUpdate(prevProps) {
     // Run the query if the query has changed
