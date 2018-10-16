@@ -71,21 +71,20 @@ class FeathersQuery extends React.Component {
     this.runQuery();
   }
   
-  onUpdatedListener(){
-    const newData = map(this.state.data, currentItem=>
-      replaceById(newData, currentItem);  
+  onUpdatedListener(data) {
+    const newData = map(this.state.data, currentItem =>
+      replaceById(newData, data)
     );
-    this.setState({data: newData});
+    this.setState({ data: newData });
   }
   
-  onPatchedListener(newData){
-    const newData = map(this.state.data, currentItem=>
-      replaceById(newData, currentItem);  
+  onPatchedListener(data) {
+    const newData = map(this.state.data, currentItem =>
+      replaceById(newData, data)
     );
-    this.setState({data: newData});
+    this.setState({ data: newData });
   }
   
-
   componentDidUpdate(prevProps) {
     // Run the query if the query has changed
     // or we've just received an app for the first time.
