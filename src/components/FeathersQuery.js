@@ -17,7 +17,7 @@ import {
   getPrevPageIndex
 } from "../helpers/pagination";
 
-const replaceById = (a,b) => a.id === b.id ? b : a;
+const replaceById = (a, b) => (a.id === b.id ? b : a);
 
 class FeathersQuery extends React.Component {
   listeners = [];
