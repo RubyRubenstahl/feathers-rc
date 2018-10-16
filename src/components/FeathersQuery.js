@@ -20,7 +20,7 @@ import {
 const replaceById = (a,b) => a.id === b.id ? b : a;
 
 class FeathersQuery extends React.Component {
-  this.listeners=[];
+  listeners = [];
   state = {
     data: null,
     error: null,
