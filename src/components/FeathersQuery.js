@@ -41,50 +41,54 @@ class FeathersQuery extends React.Component {
       this.configureListeners();
     }
   }
-  
-  compenentWillUnmount(){
+
+  compenentWillUnmount() {
     this.cleanupListeners();
   }
 
+  //Todo: put listeners into an array to make registering/unrgistering cleaner
   configureListeners() {
     // console.log("Configuring listener on service " + this.props.service);
     const service = this.props.app.service(this.props.service);
+
     service.on("created", () => this.onCreatedListener());
     service.on("removed", () => this.onRemovedListener());
     service.on("updated", () => this.onUpdatedListener());
     service.on("patched", () => this.onPatchedListener());
   }
 
-  cleanUpListeners(){
+  cleanUpListeners() {
+    console.log("Cleaning up listeners on service " + this.props.service);
+
     const service = this.props.app.service(this.props.service);
     service.removeListener("created", () => this.onCreatedListener());
     service.removeListener("removed", () => this.onRemovedListener());
     service.removeListener("updated", () => this.onUpdatedListener());
     service.removeListener("patched", () => this.onPatchedListener());
   }
-  
+
   onCreatedListener() {
     this.runQuery();
   }
-  
+
   onRemovedListener() {
     this.runQuery();
   }
-  
+
   onUpdatedListener(data) {
     const newData = map(this.state.data, currentItem =>
       replaceById(newData, data)
     );
     this.setState({ data: newData });
   }
-  
+
   onPatchedListener(data) {
     const newData = map(this.state.data, currentItem =>
       replaceById(newData, data)
     );
     this.setState({ data: newData });
   }
-  
+
   componentDidUpdate(prevProps) {
     // Run the query if the query has changed
     // or we've just received an app for the first time.
