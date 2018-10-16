@@ -63,12 +63,11 @@ class FeathersQuery extends React.Component {
     service.removeListener("patched", () => this.onPatchedListener());
   }
   
-  
-  onCreatedListener(){
+  onCreatedListener() {
     this.runQuery();
   }
   
-  onRemovedListener(){
+  onRemovedListener() {
     this.runQuery();
   }
   
