@@ -49,18 +49,18 @@ class FeathersQuery extends React.Component {
   configureListeners() {
     // console.log("Configuring listener on service " + this.props.service);
     const service = this.props.app.service(this.props.service);
-    service.on("created", this.onCreatedListener);
-    service.on("removed", this.onRemovedListener);
-    service.on("updated", this.onUpdatedListener);
-    service.on("patched", this.onPatchedListener);
+    service.on("created", () => this.onCreatedListener());
+    service.on("removed", () => this.onRemovedListener());
+    service.on("updated", () => this.onUpdatedListener());
+    service.on("patched", () => this.onPatchedListener());
   }
 
   cleanUpListeners(){
     const service = this.props.app.service(this.props.service);
-    service.removeListener("created", this.onCreatedListener);
-    service.removeListener("removed", this.onRemovedListener);
-    service.removeListener("updated", this.onUpdatedListener);
-    service.removeListener("patched", this.onPatchedListener);
+    service.removeListener("created", () => this.onCreatedListener());
+    service.removeListener("removed", () => this.onRemovedListener());
+    service.removeListener("updated", () => this.onUpdatedListener());
+    service.removeListener("patched", () => this.onPatchedListener());
   }
   
   
