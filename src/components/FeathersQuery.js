@@ -92,6 +92,9 @@ class FeathersQuery extends React.Component {
       !isEqual(this.props.query, prevProps.query) ||
       (!prevProps.app && this.props.app)
     ) {
+      if (this.props.realtime) {
+        this.configureListeners();
+      }
       this.runQuery();
     }
   }
