@@ -46,25 +46,28 @@ class FeathersQuery extends React.Component {
     this.cleanupListeners();
   }
 
-  //Todo: put listeners into an array to make registering/unrgistering cleaner
   configureListeners() {
-    // console.log("Configuring listener on service " + this.props.service);
-    const service = this.props.app.service(this.props.service);
+    // Store the even listeners in an object so they can be easily accessed to cleanup.
+    this.listeners = {
+      created: data => this.onCreatedListener(data),
+      removed: data => this.onRemovedListener(data),
+      updated: data => this.onUpdatedListener(data),
+      patched: data => this.onPatchedListener(data)
+    };
 
-    service.on("created", () => this.onCreatedListener());
-    service.on("removed", () => this.onRemovedListener());
-    service.on("updated", () => this.onUpdatedListener());
-    service.on("patched", () => this.onPatchedListener());
+    // Register the listeners
+    const service = this.props.app.service(this.props.service);
+    map(this.listeners, (listener, eventName) =>
+      service.on(eventName, listener)
+    );
   }
 
   cleanUpListeners() {
     console.log("Cleaning up listeners on service " + this.props.service);
-
     const service = this.props.app.service(this.props.service);
-    service.removeListener("created", () => this.onCreatedListener());
-    service.removeListener("removed", () => this.onRemovedListener());
-    service.removeListener("updated", () => this.onUpdatedListener());
-    service.removeListener("patched", () => this.onPatchedListener());
+    map(this.listeners, (listener, eventName) =>
+      service.removeListener(eventName, listener)
+    );
   }
 
   onCreatedListener() {
