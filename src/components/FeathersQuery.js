@@ -6,6 +6,9 @@ import isArray from "lodash/isArray";
 import isObject from "lodash/isObject";
 import isFunction from "lodash/isFunction";
 import isEqual from "lodash/isEqual";
+import map from "lodash/map";
+import mergeWith from "lodash/mergeWith";
+
 import {
   getPageNum,
   getPageCount,
@@ -14,7 +17,10 @@ import {
   getPrevPageIndex
 } from "../helpers/pagination";
 
+const replaceById = (a, b) => (a.id === b.id ? b : a);
+
 class FeathersQuery extends React.Component {
+  handlers = {};
   state = {
     data: null,
     error: null,
@@ -32,18 +38,56 @@ class FeathersQuery extends React.Component {
       this.runQuery();
     }
     if (this.props.realtime && this.props.app) {
-      this.configureListeners();
+      this.configureEventHandlers();
     }
   }
 
-  configureListeners() {
-    // console.log("Configuring listener on service " + this.props.service);
-    const service = this.props.app.service(this.props.service);
+  compenentWillUnmount() {
+    this.cleanUpEventHandlers();
+  }
 
-    service.on("created", () => this.runQuery());
-    service.on("removed", () => this.runQuery());
-    service.on("updated", () => this.runQuery());
-    service.on("patched", () => this.runQuery());
+  configureEventHandlers() {
+    // Store the event handlers in an object so they can be easily accessed to cleanup.
+    this.handlers = {
+      created: data => this.onCreatedHandler(data),
+      removed: data => this.onRemovedHandler(data),
+      updated: data => this.onUpdatedHandler(data),
+      patched: data => this.onPatchedHandler(data)
+    };
+
+    // Register the event handlers
+    const service = this.props.app.service(this.props.service);
+    map(this.handlers, (fn, eventName) => service.on(eventName, fn));
+  }
+
+  cleanUpEventHandlers() {
+    console.log("Cleaning up event handlers on service " + this.props.service);
+    const service = this.props.app.service(this.props.service);
+    map(this.handlers, (fn, eventName) =>
+      service.removeListener(eventName, fn)
+    );
+  }
+
+  onCreatedHandler() {
+    this.runQuery();
+  }
+
+  onRemovedHandler() {
+    this.runQuery();
+  }
+
+  onUpdatedHandler(data) {
+    const newData = map(this.state.data, currentItem =>
+      replaceById(newData, data)
+    );
+    this.setState({ data: newData });
+  }
+
+  onPatchedHandler(data) {
+    const newData = map(this.state.data, currentItem =>
+      replaceById(currentItem, data)
+    );
+    this.setState({ data: newData });
   }
 
   componentDidUpdate(prevProps) {
@@ -53,6 +97,9 @@ class FeathersQuery extends React.Component {
       !isEqual(this.props.query, prevProps.query) ||
       (!prevProps.app && this.props.app)
     ) {
+      if (this.props.realtime) {
+        this.configureEventHandlers();
+      }
       this.runQuery();
     }
   }
