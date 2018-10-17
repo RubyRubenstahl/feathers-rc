@@ -20,7 +20,7 @@ import {
 const replaceById = (a, b) => (a.id === b.id ? b : a);
 
 class FeathersQuery extends React.Component {
-  listeners = [];
+  handlers = {};
   state = {
     data: null,
     error: null,
@@ -38,54 +38,52 @@ class FeathersQuery extends React.Component {
       this.runQuery();
     }
     if (this.props.realtime && this.props.app) {
-      this.configureListeners();
+      this.configureEventHandlers();
     }
   }
 
   compenentWillUnmount() {
-    this.cleanupListeners();
+    this.cleanUpEventHandlers();
   }
 
-  configureListeners() {
-    // Store the even listeners in an object so they can be easily accessed to cleanup.
-    this.listeners = {
-      created: data => this.onCreatedListener(data),
-      removed: data => this.onRemovedListener(data),
-      updated: data => this.onUpdatedListener(data),
-      patched: data => this.onPatchedListener(data)
+  configureEventHandlers() {
+    // Store the event handlers in an object so they can be easily accessed to cleanup.
+    this.handlers = {
+      created: data => this.onCreatedHandler(data),
+      removed: data => this.onRemovedHandler(data),
+      updated: data => this.onUpdatedHandler(data),
+      patched: data => this.onPatchedHandler(data)
     };
 
-    // Register the listeners
+    // Register the event handlers
     const service = this.props.app.service(this.props.service);
-    map(this.listeners, (listener, eventName) =>
-      service.on(eventName, listener)
+    map(this.handlers, (fn, eventName) => service.on(eventName, fn));
+  }
+
+  cleanUpEventHandlers() {
+    console.log("Cleaning up event handlers on service " + this.props.service);
+    const service = this.props.app.service(this.props.service);
+    map(this.handlers, (fn, eventName) =>
+      service.removeListener(eventName, fn)
     );
   }
 
-  cleanUpListeners() {
-    console.log("Cleaning up listeners on service " + this.props.service);
-    const service = this.props.app.service(this.props.service);
-    map(this.listeners, (listener, eventName) =>
-      service.removeListener(eventName, listener)
-    );
-  }
-
-  onCreatedListener() {
+  onCreatedHandler() {
     this.runQuery();
   }
 
-  onRemovedListener() {
+  onRemovedHandler() {
     this.runQuery();
   }
 
-  onUpdatedListener(data) {
+  onUpdatedHandler(data) {
     const newData = map(this.state.data, currentItem =>
       replaceById(newData, data)
     );
     this.setState({ data: newData });
   }
 
-  onPatchedListener(data) {
+  onPatchedHandler(data) {
     const newData = map(this.state.data, currentItem =>
       replaceById(newData, data)
     );
@@ -100,7 +98,7 @@ class FeathersQuery extends React.Component {
       (!prevProps.app && this.props.app)
     ) {
       if (this.props.realtime) {
-        this.configureListeners();
+        this.configureEventHandlers();
       }
       this.runQuery();
     }
