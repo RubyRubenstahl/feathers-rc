@@ -85,7 +85,7 @@ class FeathersQuery extends React.Component {
 
   onPatchedHandler(data) {
     const newData = map(this.state.data, currentItem =>
-      replaceById(newData, data)
+      replaceById(currentItem, data)
     );
     this.setState({ data: newData });
   }
