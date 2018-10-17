@@ -65,6 +65,37 @@ This component _must_ wrap all other feathers-rc components.
 
 **app** _\<object>_ - Access the app directly when needed
 
+### \<FeathersAppInfo>
+
+Passes the feathers app and connection information into the rendered component
+
+```jsx
+<FeathersApp host={"localhost"} port={3030}>
+  <FeathersAppInfo
+    render={({ app, connected, host, port }) => (
+      <ul>
+        <li>connected: {Boolean(connected).toString()</li>
+        <li>host: {host}</li>
+        <li>port: {port}</li>
+      </ul>
+    )}
+  />
+```
+
+#### Input Props
+
+None
+
+#### Passed Props
+
+**connected** _\<Boolean>_ - Websocket connection status.
+
+**intialized** _\<Boolean>_ - True when a preconfigured appwas passed to FeathersApp or the intialization of the default app is complete.
+
+**host** _\<Boolean>_ - Host address of the feathers server.
+
+**port** _\<Boolean>_ - Host port for the feathers server.
+
 ### \<FeathersQuery>
 
 Fetches an arbitrary number of
