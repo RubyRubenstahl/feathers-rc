@@ -111,9 +111,9 @@ Fetches an arbitrary number of
     limit={10}
     skip={3}
     realtime
-  >
-    {({ recordCount }) => <div>Count: {recordCount}</div>}
-  <FeathersQuery/>
+    render={({ recordCount }) => <div>Count: {recordCount}</div>}
+  />
+  <FeathersQuery />
 </FeathersApp>
 ```
 
