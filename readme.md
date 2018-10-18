@@ -59,7 +59,7 @@ This component _must_ wrap all other feathers-rc components.
 | host | _string_                | Address of the host to connect to                                                                                                                   |
 | port | _number_                | Websocket port for the host is listening on.                                                                                                        |
 
-#### Child Properties
+#### Child Props
 
 | name        | type      | description                                       |
 | ----------- | --------- | ------------------------------------------------- |
@@ -68,6 +68,36 @@ This component _must_ wrap all other feathers-rc components.
 | initialized | _boolean_ | True if initializtion of feathers app is complete |
 | host        | _string_  | Host name of the feathers server.                 |
 | port        | _number_  | Port number of the feathers server websocket.     |
+
+### \<FeathersAppInfo>
+
+Passes the feathers app and connection information into the rendered component
+
+```jsx
+<FeathersApp host={"localhost"} port={3030}>
+  <FeathersAppInfo
+    render={({ app, connected, host, port }) => (
+      <ul>
+        <li>connected: {Boolean(connected).toString()</li>
+        <li>host: {host}</li>
+        <li>port: {port}</li>
+      </ul>
+    )}
+  />
+```
+
+#### Input Props
+
+None
+
+#### Passed Props
+
+| name       | type      | description                                                                                                 |
+| ---------- | --------- | ----------------------------------------------------------------------------------------------------------- |
+| connected  | _Boolean_ | Websocket connection status.                                                                                |
+| intialized | _Boolean_ | True when a preconfigured appwas passed to FeathersApp or the intialization of the default app is complete. |
+| host       | _Boolean_ | Host address of the feathers server.                                                                        |
+| port       | _Boolean_ | Host port for the feathers server.                                                                          |
 
 ### \<FeathersQuery>
 
@@ -99,41 +129,38 @@ Fetches an arbitrary number of
 | realtime  | _boolean_  | If true, subscribe to changes and re-run the query if any changes are detected to the loaded queries.                                                                                                                                                                                                                            |
 | transform | _function_ | Transformation function to run on data before it's passed down.                                                                                                                                                                                                                                                                  |
 
-#### Child Properties
+#### Child Props
 
-| name          | type                     | description                                                                                                                                                                                                                                                                                                                                           |
-| ------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| app           | _object_                 | Access the app directly when needed                                                                                                                                                                                                                                                                                                                   |
-| data          | _object, array, or null_ | The data returned from the query. <ul><li> Null if the query has not been returned or has no data. </li><li>Contains the data returned from the query.</li><li>Data will be normalized if paginated.</li><li>If a transform function was passed to the parent component, the data will have been processed by the transformation function.</li> </ul> |
-| paginated     | _boolean_                | Indicates whether the response is paginated.                                                                                                                                                                                                                                                                                                          |
-| pageCount     | _number_                 | Number of the current pages available.                                                                                                                                                                                                                                                                                                                |
-| pageNum       | _number_                 | Number of the current page of results.                                                                                                                                                                                                                                                                                                                |
-| pageCount     | _number_                 | Number of pages available.                                                                                                                                                                                                                                                                                                                            |
-| startIndex    | _number_                 | Index of the first record within the query (the value passed to skip)                                                                                                                                                                                                                                                                                 |
-| nextPageIndex | _number_                 | The start index of the next page (use with skip). Null if no more pages available or pagination is disabled.                                                                                                                                                                                                                                          |
-| prevPageIndex | _number_                 | The start index of the previous page (use with skip). Null if no more pages available or pagination is disabled.                                                                                                                                                                                                                                      |
-| recordCount   | _number_                 | Total nunber or record found in the query. Null if the data is not included                                                                                                                                                                                                                                                                           |
-| service       | _object_                 | Direct access to the service the query was run on.                                                                                                                                                                                                                                                                                                    |
-| error         | _object_                 | Error object, if holding any error producted by the most recent request. Will be null if no error was reported.                                                                                                                                                                                                                                       |
-| - name        | _string_                 | Name of the error                                                                                                                                                                                                                                                                                                                                     |
-| - message     | _string_                 | The error message.                                                                                                                                                                                                                                                                                                                                    |
-| - code        | _number_                 | Error code                                                                                                                                                                                                                                                                                                                                            |
-| - errors      | _object_                 | An abitrary object describing the errors, as passed by the service.                                                                                                                                                                                                                                                                                   |
-| - data        | _object_                 | Any data that was provided with the request                                                                                                                                                                                                                                                                                                           |
-| - classname   | _string_                 | CSS classname of the error , if it applicable.                                                                                                                                                                                                                                                                                                        |
-| hasData       | _boolean_                | True if the normalized data is not null, empty array, or empty object                                                                                                                                                                                                                                                                                 |
-| fetching      | _boolean_                | True if there is currently a request in-flight                                                                                                                                                                                                                                                                                                        |
-| app           | _object_                 | Direct access to the feathers app, should you need it                                                                                                                                                                                                                                                                                                 |
-| service       | _object_                 | Direct access to the service, should you need it                                                                                                                                                                                                                                                                                                      |
-
-#### Child Methods
-
-| name            | type       | description                                                           |
-| --------------- | ---------- | --------------------------------------------------------------------- |
-| gotoNextPage()  | _function_ | Run the query for the next page. Ignored if we are on the last page.  |
-| gotoPrevPage()  | _function_ | Run the query for the prev page. Ignored if we are on the first page. |
-| gotoFirstPage() | _function_ | Run the query for the first page;                                     |
-| gotoLastPage()  | _function_ | Run the query for the last page;                                      |
+| name            | type                     | description                                                                                                                                                                                                                                                                                                                                           |
+| --------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| app             | _object_                 | Access the app directly when needed                                                                                                                                                                                                                                                                                                                   |
+| data            | _object, array, or null_ | The data returned from the query. <ul><li> Null if the query has not been returned or has no data. </li><li>Contains the data returned from the query.</li><li>Data will be normalized if paginated.</li><li>If a transform function was passed to the parent component, the data will have been processed by the transformation function.</li> </ul> |
+| paginated       | _boolean_                | Indicates whether the response is paginated.                                                                                                                                                                                                                                                                                                          |
+| pageCount       | _number_                 | Number of the current pages available.                                                                                                                                                                                                                                                                                                                |
+| pageNum         | _number_                 | Number of the current page of results.                                                                                                                                                                                                                                                                                                                |
+| pageCount       | _number_                 | Number of pages available.                                                                                                                                                                                                                                                                                                                            |
+| startIndex      | _number_                 | Index of the first record within the query (the value passed to skip)                                                                                                                                                                                                                                                                                 |
+| nextPageIndex   | _number_                 | The start index of the next page (use with skip). Null if no more pages available or pagination is disabled.                                                                                                                                                                                                                                          |
+| prevPageIndex   | _number_                 | The start index of the previous page (use with skip). Null if no more pages available or pagination is disabled.                                                                                                                                                                                                                                      |
+| recordCount     | _number_                 | Total nunber or record found in the query. Null if the data is not included                                                                                                                                                                                                                                                                           |
+| service         | _object_                 | Direct access to the service the query was run on.                                                                                                                                                                                                                                                                                                    |
+| error           | _object_                 | Error object, if holding any error producted by the most recent request. Will be null if no error was reported.                                                                                                                                                                                                                                       |
+| - name          | _string_                 | Name of the error                                                                                                                                                                                                                                                                                                                                     |
+| - message       | _string_                 | The error message.                                                                                                                                                                                                                                                                                                                                    |
+| - code          | _number_                 | Error code                                                                                                                                                                                                                                                                                                                                            |
+| - errors        | _object_                 | An abitrary object describing the errors, as passed by the service.                                                                                                                                                                                                                                                                                   |
+| - data          | _object_                 | Any data that was provided with the request                                                                                                                                                                                                                                                                                                           |
+| - classname     | _string_                 | CSS classname of the error , if it applicable.                                                                                                                                                                                                                                                                                                        |
+| hasData         | _boolean_                | True if the normalized data is not null, empty array, or empty object                                                                                                                                                                                                                                                                                 |
+| fetching        | _boolean_                | True if there is currently a request in-flight                                                                                                                                                                                                                                                                                                        |
+| app             | _object_                 | Direct access to the feathers app, should you need it                                                                                                                                                                                                                                                                                                 |
+| service         | _object_                 | Direct access to the service, should you need it                                                                                                                                                                                                                                                                                                      |
+| name            | type                     | description                                                                                                                                                                                                                                                                                                                                           |
+| --------------- | ----------               | ---------------------------------------------------------------------                                                                                                                                                                                                                                                                                 |
+| gotoNextPage()  | _function_               | Run the query for the next page. Ignored if we are on the last page.                                                                                                                                                                                                                                                                                  |
+| gotoPrevPage()  | _function_               | Run the query for the prev page. Ignored if we are on the first page.                                                                                                                                                                                                                                                                                 |
+| gotoFirstPage() | _function_               | Run the query for the first page;                                                                                                                                                                                                                                                                                                                     |
+| gotoLastPage()  | _function_               | Run the query for the last page;                                                                                                                                                                                                                                                                                                                      |
 
 ### \<FeathersGet>
 
@@ -182,20 +209,15 @@ Fetches a single object by its id
 
 #### Passed Props
 
-| name    | type     | description                                           |
-| ------- | -------- | ----------------------------------------------------- |
-| app     | _object_ | Direct access to the feathers app, should you need it |
-| service | _object_ | Direct access to the service, should you need it      |
-
-### Passed methods
-
-| name                     | description                                                                                                                                                                                                                                   |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| create(data)             | Create a new item on the service                                                                                                                                                                                                              |
-| update(id, data, params) | Replace the entire document(s) with the given id or query within the params object. <ul><li> Use null for id to update multiple items using a query.</li><li> Passing null to id without specifying a query will result in an error</li></ul> |
-| patch(id, data, params)  | Patch an existing object \* use null for id to update multiple items using a query object in the params object.                                                                                                                               |
-| remove(id, params)       | Remove the entire document(s) with the given id or query in the params object. <ul><li> Use null for id to update multiple items using a query.</li><li>Passing null to id without specifying a query will result in an error</li></ul>       |
-| removeAll()              | Remove all entries                                                                                                                                                                                                                            |
+| name                     | type       | description                                                                                                                                                                                                                                   |
+| ------------------------ | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| app                      | _object_   | Direct access to the feathers app, should you need it                                                                                                                                                                                         |
+| service                  | _object_   | Direct access to the service, should you need it                                                                                                                                                                                              |
+| create(data)             | _function_ | Create a new item on the service                                                                                                                                                                                                              |
+| update(id, data, params) | _function_ | Replace the entire document(s) with the given id or query within the params object. <ul><li> Use null for id to update multiple items using a query.</li><li> Passing null to id without specifying a query will result in an error</li></ul> |
+| patch(id, data, params)  | _function_ | Patch an existing object \* use null for id to update multiple items using a query object in the params object.                                                                                                                               |
+| remove(id, params)       | _function_ | Remove the entire document(s) with the given id or query in the params object. <ul><li> Use null for id to update multiple items using a query.</li><li>Passing null to id without specifying a query will result in an error</li></ul>       |
+| removeAll()              | _function_ | Remove all entries                                                                                                                                                                                                                            |
 
 # Constants
 
