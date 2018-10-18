@@ -96,8 +96,8 @@ None
 | ---------- | --------- | ----------------------------------------------------------------------------------------------------------- |
 | connected  | _Boolean_ | Websocket connection status.                                                                                |
 | intialized | _Boolean_ | True when a preconfigured appwas passed to FeathersApp or the intialization of the default app is complete. |
-| host       | _Boolean_ | Host address of the feathers server.                                                                        |
-| port       | _Boolean_ | Host port for the feathers server.                                                                          |
+| host       | _String_  | Host address of the feathers server.                                                                        |
+| port       | _Number_  | Host port for the feathers server.                                                                          |
 
 ### \<FeathersQuery>
 
