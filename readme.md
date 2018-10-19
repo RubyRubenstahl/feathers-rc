@@ -229,33 +229,6 @@ Fetches a single object by its id
 | service     | _object_   | Direct access to the service the query was run on.                                                                                                                                                                                                                                                       |
 | transform   | _function_ | Transformation function to run on data before it's passed down.                                                                                                                                                                                                                                          |
 
-### 📦 \<FeathersService>
-
-```jsx
-<Service service={"service-name"}>
-  <ChildComponent />
-</Service>
-```
-
-#### Input Props
-
-| name    | type              | description                                                             |
-| ------- | ----------------- | ----------------------------------------------------------------------- |
-| service | _string_          | Name of the service                                                     |
-| render  | _react component_ | The component or function to render. It will be passed the below props. |
-
-#### Passed Props
-
-| name                     | type       | description                                                                                                                                                                                                                                   |
-| ------------------------ | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| app                      | _object_   | Direct access to the feathers app, should you need it                                                                                                                                                                                         |
-| service                  | _object_   | Direct access to the service, should you need it                                                                                                                                                                                              |
-| create(data)             | _function_ | Create a new item on the service                                                                                                                                                                                                              |
-| update(id, data, params) | _function_ | Replace the entire document(s) with the given id or query within the params object. <ul><li> Use null for id to update multiple items using a query.</li><li> Passing null to id without specifying a query will result in an error</li></ul> |
-| patch(id, data, params)  | _function_ | Patch an existing object \* use null for id to update multiple items using a query object in the params object.                                                                                                                               |
-| remove(id, params)       | _function_ | Remove the entire document(s) with the given id or query in the params object. <ul><li> Use null for id to update multiple items using a query.</li><li>Passing null to id without specifying a query will result in an error</li></ul>       |
-| removeAll()              | _function_ | Remove all entries                                                                                                                                                                                                                            |
-
 # Constants
 
 | name | value | description                                                            |
