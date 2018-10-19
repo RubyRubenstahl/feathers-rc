@@ -102,6 +102,7 @@ This component _must_ wrap all other feathers-rc components.
 | host        | _string_  | Host name of the feathers server.                 |
 | port        | _number_  | Port number of the feathers server websocket.     |
 
+
 ### 📦 \<FeathersAppInfo>
 
 Passes the feathers app and connection information into the rendered component
