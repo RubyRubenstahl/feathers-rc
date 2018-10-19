@@ -10,7 +10,6 @@ import {
   FeathersGet,
   ASC,
   DESC,
-  FeathersService
 } from "../src/index";
 import { isArray } from "util";
 
@@ -35,26 +34,26 @@ storiesOf("Welcome", module)
           nextPageIndex,
           prevPageIndex
         }) => (
-          <div>
-            {error && error.message}
-            <br />
-            Total Records: {recordCount}
-            <br />
-            Page count: {pageCount}
-            <br />
-            Current Page: {pageNum}
-            <br />
-            Start Index: {startIndex}
-            <br />
-            Next Page Index: {nextPageIndex}
-            <br />
-            Prev Page Index: {prevPageIndex}
-            <br />
-            Paginated: {JSON.stringify(paginated)}
-            <br />
-            data: <pre>{JSON.stringify(data, null, 2)} </pre>
-          </div>
-        )}
+            <div>
+              {error && error.message}
+              <br />
+              Total Records: {recordCount}
+              <br />
+              Page count: {pageCount}
+              <br />
+              Current Page: {pageNum}
+              <br />
+              Start Index: {startIndex}
+              <br />
+              Next Page Index: {nextPageIndex}
+              <br />
+              Prev Page Index: {prevPageIndex}
+              <br />
+              Paginated: {JSON.stringify(paginated)}
+              <br />
+              data: <pre>{JSON.stringify(data, null, 2)} </pre>
+            </div>
+          )}
         liveUpdate
       />
     </FeathersApp>
@@ -76,48 +75,4 @@ storiesOf("Welcome", module)
       />
     </FeathersApp>
   ))
-  .add("FeathersService", () => (
-    <FeathersApp host={"localhost"} port={3030}>
-      <FeathersQuery
-        service={"test"}
-        limit={1}
-        liveUpdate
-        render={({ recordCount = 0, error, data }) => (
-          <React.Fragment>
-            <div>
-              {error && error.message}
-              <br />
-              Total Records: {recordCount}
-              <br />
-              FirstRecord:
-              <pre>{isArray(data) && JSON.stringify(data[0], null, 2)} </pre>
-            </div>
-
-            <FeathersService
-              name={"test"}
-              render={({ create, removeAll, patch }) => {
-                return (
-                  <React.Fragment>
-                    <button onClick={() => create({ timestamp: Date.now() })}>
-                      +
-                    </button>
-
-                    <button onClick={removeAll}>Clear</button>
-                    {isArray(data) && (
-                      <button
-                        onClick={() =>
-                          patch(data[0].id, { timestamp: Date.now() })
-                        }
-                      >
-                        Patch
-                      </button>
-                    )}
-                  </React.Fragment>
-                );
-              }}
-            />
-          </React.Fragment>
-        )}
-      />
-    </FeathersApp>
-  ));
+  ;
