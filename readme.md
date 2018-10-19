@@ -5,7 +5,7 @@ Feathers is an elegant, flexible, and powerful nodejs backend API layer that is 
 Feathers React Components is a set of components that make building Feathers frontends in React as delightful as building Feathers backends (and vanilla javascript, using the client library). 
 
 
-## Awesome! Tell me more!!!
+## 🙋 Tell me more!!!
 
 ### What is Feathers?
 
@@ -37,7 +37,7 @@ When a `patch` or `update` event is received, the data stored within the query c
 
 Listeners are automatically cleaned up when the component unmounts  
 
-## IMPORTANT!
+## ⛔️ IMPORTANT ⛔️
 
 Please note that this package is in early development and is **not production ready!!!**
 
