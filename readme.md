@@ -22,9 +22,6 @@ class App extends Component {
     );
   }
 }
-
-
-
 export default App;
 ```
 ## 🙋 I have some questions!
