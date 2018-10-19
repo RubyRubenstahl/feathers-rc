@@ -1,16 +1,47 @@
 # Feathers React Components
 
-`feathers-rc` is a collection of React components designed to make building react apps backed by feathersjs a delightful experience.
+Feathers is an elegant, flexible, and powerful nodejs backend API layer that is a pleasure to work with. Feathers React Components was created to leverage the app/service model that makes feathers so easy to work with. 
 
-`FeathersApp` acts as a root component, which provides access to the feathers app to other components contained within it.
+Feathers React Components is a set of components that make building Feathers frontends in React as delightful as building Feathers backends (and vanilla javascript, using the client library). 
 
-`FeathersGet` and `FeathersQuery` allow you to declaritively query the server, passing data and other releavent data.
+
+## Awesome! Tell me more!!!
+
+### What is Feathers?
+
+Feathers is a nodejs API layer that provides a standardized way to create REST and websocket (via socketio or primus) CRUD APIs that can be transparently be backed by a variety of storage solutions such as in-memory, browser localstorage, mongodb, most flavors of SQL, and more. 
+
+A feathers app can easily be configured to provide realtime websocket events for CRUD transactions as well as allowing for custom events. 
+
+This barely scratches the surface of what Feathers is. If you're not familiar, I'd strongly encourage you to learn a bit more about feathers before you look at Feathers React Components. 
+
+### What does Feathers React Components do for me?
+
+Feathers React Components allows you to consume Feathers APIs, including (optionally) automatic handling of realtime updates. 
+
+All FRC components must be wrapped by a `FeathersAppProvider` component, which either accepts or creates a Feathers app instance. `FeathersAppProvider` uses the React Context API to provide the app to FRC components. 
+
+`FeathersApp` provides a reference to the app along with websocket connection status information. 
+
+The `FeathersGet`, `FeathersQuery`, and `FeathersFindOne` (the query components) each recive a query and uses the render prop pattern to pass down fetch state, errors, and nomalized results along with a reference to the app. 
+
+All of the query components have a boolean input prop called `realtime`, which enables realtime updates (see below for more). 
+
+### How do realtime updates work?
+
+When a query component is mounted with the realtime prop set to `true`, it registers a listener for each of the Feathers service event types (`create`, `remove`, `update`, and `patch`). 
+
+When a `create` or `remove` event is received, the query is simply re-executed as there's no way to know how the results of the query would be affected. 
+
+When a `patch` or `update` event is received, the data stored within the query component's internal state updated to reflect the change. 
+
+Listeners are automatically cleaned up when the component unmounts  
 
 ## IMPORTANT!
 
-Please not that this package is in early development and is **not production ready!!!**
+Please note that this package is in early development and is **not production ready!!!**
 
-## A contrived example
+## Enough! Show me a contrived example!
 
 ```jsx
 import React, { Component } from "react";
