@@ -1,5 +1,5 @@
 import React from "react";
-import { withFeathersContext } from "../components/FeathersApp";
+import { withFeathersContext } from "../components/FeathersAppProvider";
 
 export default props => {
   const {

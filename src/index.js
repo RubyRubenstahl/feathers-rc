@@ -1,19 +1,19 @@
 import "@babel/polyfill";
 
 import React from "react";
-import FeathersApp from "./components/FeathersApp";
+import FeathersAppProvider from "./components/FeathersAppProvider";
 import FeathersQuery from "./components/FeathersQuery";
 import FeathersGet from "./components/FeathersGet";
-import FeathersAppInfo from "./components/FeathersAppInfo";
+import FeathersApp from "./components/FeathersApp";
 
 const ASC = 1;
 const DESC = -1;
 
 export {
-  FeathersApp,
+  FeathersAppProvider,
   FeathersQuery,
   FeathersGet,
-  FeathersAppInfo,
+  FeathersApp,
   ASC,
   DESC
 };

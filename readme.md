@@ -8,17 +8,17 @@ Feathers React Components is a set of components that make building [Feathers](h
 
 ```jsx
 import React, { Component } from "react";
-import { FeathersApp } from "feathers-rc";
+import { FeathersAppProvider, FeathersQuery } from "feathers-rc";
 import TodoList from "./TodoList";
 
 class App extends Component {
   render() {
     return (
-      <FeathersApp host={"localhost"} port={3030}>
+      <FeathersAppProvider host={"localhost"} port={3030}>
         <FeathersQuery service={"todos"} query={{ complete: false }} realtime>
           {({ data }) => <TodoList todos={data} />}
         </FeathersQuery>
-      </FeathersApp>
+      </FeathersAppProvider>
     );
   }
 }
@@ -40,7 +40,7 @@ Feathers React Components allows you to consume Feathers APIs, including (option
 
 All FRC components must be wrapped by a `<FeathersAppProvider>` component, which either accepts or creates a Feathers app instance. `<FeathersAppProvider>` uses the React Context API to provide the app to FRC components. 
 
-`<FeathersApp>` provides a reference to the app along with websocket connection status information. 
+`<FeathersAppProvider>` provides a reference to the app along with websocket connection status information. 
 
 The `<FeathersGet>`, `<FeathersQuery>`, and `<FeathersFindOne>` (the query components) each recive a query and uses the render prop pattern to pass down fetch state, errors, and nomalized results along with a reference to the app. 
 
@@ -71,16 +71,16 @@ Listeners are automatically cleaned up when the component unmounts
 
 ## 📦 Components
 
-### \<FeathersApp>
+### \<FeathersAppProvider>
 
 Uses the context api to provide access to the.
 This component _must_ wrap all other feathers-rc components.
 
 ```jsx
 <App>
-  <FeathersApp host={example.com} port={3030}>
+  <FeathersAppProvider host={example.com} port={3030}>
     ... your secret sauce
-  </FeathersApp>
+  </FeathersAppProvider>
 </App>
 ```
 
@@ -103,13 +103,13 @@ This component _must_ wrap all other feathers-rc components.
 | port        | _number_  | Port number of the feathers server websocket.     |
 
 
-### 📦 \<FeathersAppInfo>
+### 📦 \<FeathersApp>
 
 Passes the feathers app and connection information into the rendered component
 
 ```jsx
-<FeathersApp host={"localhost"} port={3030}>
-  <FeathersAppInfo
+<FeathersAppProvider>host={"localhost"} port={3030}>
+  <FeathersApp
     render={({ app, connected, host, port }) => (
       <ul>
         <li>connected: {Boolean(connected).toString()}</li>
@@ -126,19 +126,19 @@ None
 
 #### Passed Props
 
-| name       | type      | description                                                                                                 |
-| ---------- | --------- | ----------------------------------------------------------------------------------------------------------- |
-| connected  | _Boolean_ | Websocket connection status.                                                                                |
-| intialized | _Boolean_ | True when a preconfigured appwas passed to FeathersApp or the intialization of the default app is complete. |
-| host       | _String_  | Host address of the feathers server.                                                                        |
-| port       | _Number_  | Host port for the feathers server.                                                                          |
+| name       | type      | description                                                                                                          |
+| ---------- | --------- | -------------------------------------------------------------------------------------------------------------------- |
+| connected  | _Boolean_ | Websocket connection status.                                                                                         |
+| intialized | _Boolean_ | True when a preconfigured app was passed to FeathersAppProvider or the intialization of the default app is complete. |
+| host       | _String_  | Host address of the feathers server.                                                                                 |
+| port       | _Number_  | Host port for the feathers server.                                                                                   |
 
 ### 📦 \<FeathersQuery>
 
 Fetches an arbitrary number of
 
 ```jsx
-<FeathersApp host={"localhost"} port={3030}>
+<FeathersAppProvider>host={"localhost"} port={3030}>
   <FeathersQuery
     service="test"
     query={{ roomId: 5 }}
@@ -148,7 +148,7 @@ Fetches an arbitrary number of
     render={({ recordCount }) => <div>Count: {recordCount}</div>}
   />
   <FeathersQuery />
-</FeathersApp>
+</FeathersAppProvider>
 ```
 
 #### Props
@@ -198,9 +198,9 @@ Fetches an arbitrary number of
 Fetches a single object by its id
 
 ```jsx
-<FeathersApp host={"localhost"} port={3030}>
+<FeathersAppProvider host={"localhost"} port={3030}>
   <FeathersGet service="my-service" id={itemId} render={MyDataViewCompoonent} />
-</FeathersApp>
+</FeathersAppProvider>
 ```
 
 #### Input Props

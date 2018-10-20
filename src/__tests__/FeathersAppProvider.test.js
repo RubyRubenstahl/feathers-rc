@@ -1,6 +1,6 @@
 import React from "react";
-import FeathersApp from "../components/FeathersApp";
-import FeathersAppTest from "../test-components/FeathersAppTest";
+import FeathersAppProvider from "../components/FeathersAppProvider";
+import FeathersAppProviderTest from "../test-components/FeathersAppProviderTest";
 import {
   render,
   waitForElement,
@@ -10,11 +10,11 @@ import {
 
 afterEach(cleanup);
 
-test("<FeathersApp/>", async () => {
+test("<FeathersAppProvider/>", async () => {
   const { debug, getByTestId, queryByTestId } = render(
-    <FeathersApp>
-      <FeathersAppTest />
-    </FeathersApp>
+    <FeathersAppProvider>
+      <FeathersAppProviderTest />
+    </FeathersAppProvider>
   );
   // Verify that the child component is rendered.
   expect(getByTestId("feathers-app-child")).toBeTruthy();
@@ -44,13 +44,13 @@ test("<FeathersApp/>", async () => {
   expect(queryByTestId("app-connected")).toBeFalsy();
 });
 
-test("<FeathersApp/> with hostname and port", async () => {
+test("<FeathersAppProvider/> with hostname and port", async () => {
   const HOST = "testhost";
   const PORT = 9001; // It's over 9000!!!!!
   const { debug, getByTestId, getByText } = render(
-    <FeathersApp host={HOST} port={PORT}>
-      <FeathersAppTest />
-    </FeathersApp>
+    <FeathersAppProvider host={HOST} port={PORT}>
+      <FeathersAppProviderTest />
+    </FeathersAppProvider>
   );
 
   await waitForElement(() => getByTestId("app-object"));
@@ -67,14 +67,14 @@ test("<FeathersApp/> with hostname and port", async () => {
   expect(parseInt(getByTestId("websocket-port").textContent)).toBe(PORT);
 });
 
-test("<FeathersApp/> with custom app", async () => {
+test("<FeathersAppProvider/> with custom app", async () => {
   const HOST = "testhost";
   const PORT = 9001; // It's over 9000!!!!!
   const APP = {};
   const { debug, getByTestId, queryByTestId } = render(
-    <FeathersApp app={APP} host={HOST} port={PORT}>
-      <FeathersAppTest />
-    </FeathersApp>
+    <FeathersAppProvider app={APP} host={HOST} port={PORT}>
+      <FeathersAppProviderTest />
+    </FeathersAppProvider>
   );
 
   await waitForElement(() => getByTestId("app-object"));
