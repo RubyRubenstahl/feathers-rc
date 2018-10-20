@@ -103,13 +103,13 @@ This component _must_ wrap all other feathers-rc components.
 | port        | _number_  | Port number of the feathers server websocket.     |
 
 
-### 📦 \<FeathersAppInfo>
+### 📦 \<FeathersApp>
 
 Passes the feathers app and connection information into the rendered component
 
 ```jsx
 <FeathersAppProvider>host={"localhost"} port={3030}>
-  <FeathersAppInfo
+  <FeathersApp
     render={({ app, connected, host, port }) => (
       <ul>
         <li>connected: {Boolean(connected).toString()}</li>
@@ -126,12 +126,12 @@ None
 
 #### Passed Props
 
-| name       | type      | description                                                                                                 |
-| ---------- | --------- | ----------------------------------------------------------------------------------------------------------- |
-| connected  | _Boolean_ | Websocket connection status.                                                                                |
-| intialized | _Boolean_ | True when a preconfigured appwas passed to FeathersApp or the intialization of the default app is complete. |
-| host       | _String_  | Host address of the feathers server.                                                                        |
-| port       | _Number_  | Host port for the feathers server.                                                                          |
+| name       | type      | description                                                                                                          |
+| ---------- | --------- | -------------------------------------------------------------------------------------------------------------------- |
+| connected  | _Boolean_ | Websocket connection status.                                                                                         |
+| intialized | _Boolean_ | True when a preconfigured app was passed to FeathersAppProvider or the intialization of the default app is complete. |
+| host       | _String_  | Host address of the feathers server.                                                                                 |
+| port       | _Number_  | Host port for the feathers server.                                                                                   |
 
 ### 📦 \<FeathersQuery>
 
