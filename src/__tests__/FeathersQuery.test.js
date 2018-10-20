@@ -1,5 +1,5 @@
 import React from "react";
-import FeathersApp from "../components/FeathersApp";
+import FeathersAppProvider from "../components/FeathersAppProvider";
 import FeathersQuery from "../components/FeathersQuery";
 import FeathersQueryTest from "../test-components/FeathersQueryTest";
 import testApp from "../../testApp/feathersTestApp";
@@ -33,9 +33,9 @@ afterEach(cleanup);
 
 test("<FeathersQuery/> with empty query", async () => {
   const { debug, getByTestId, queryByTestId } = render(
-    <FeathersApp host={"localhost"} port={3030}>
+    <FeathersAppProvider host={"localhost"} port={3030}>
       <FeathersQuery service={"test"} render={FeathersQueryTest} />
-    </FeathersApp>
+    </FeathersAppProvider>
   );
 
   // Verify that the child component is rendered.
@@ -64,7 +64,7 @@ test("<FeathersQuery/> with empty query", async () => {
 
 test("<FeathersQuery/> with simple query", async () => {
   const { debug, getByTestId, queryByTestId } = render(
-    <FeathersApp host={"localhost"} port={3030}>
+    <FeathersAppProvider host={"localhost"} port={3030}>
       <FeathersQuery
         query={{ value: 1 }}
         service={"test"}
@@ -72,7 +72,7 @@ test("<FeathersQuery/> with simple query", async () => {
           <FeathersQueryTest callback={p => console.log(p)} {...props} />
         )}
       />
-    </FeathersApp>
+    </FeathersAppProvider>
   );
 
   // Wait for the query to be returned

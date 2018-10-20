@@ -8,17 +8,17 @@ Feathers React Components is a set of components that make building [Feathers](h
 
 ```jsx
 import React, { Component } from "react";
-import { FeathersApp } from "feathers-rc";
+import { FeathersAppProvider, FeathersQuery } from "feathers-rc";
 import TodoList from "./TodoList";
 
 class App extends Component {
   render() {
     return (
-      <FeathersApp host={"localhost"} port={3030}>
+      <FeathersAppProvider host={"localhost"} port={3030}>
         <FeathersQuery service={"todos"} query={{ complete: false }} realtime>
           {({ data }) => <TodoList todos={data} />}
         </FeathersQuery>
-      </FeathersApp>
+      </FeathersAppProvider>
     );
   }
 }
@@ -40,7 +40,7 @@ Feathers React Components allows you to consume Feathers APIs, including (option
 
 All FRC components must be wrapped by a `<FeathersAppProvider>` component, which either accepts or creates a Feathers app instance. `<FeathersAppProvider>` uses the React Context API to provide the app to FRC components. 
 
-`<FeathersApp>` provides a reference to the app along with websocket connection status information. 
+`<FeathersAppProvider>` provides a reference to the app along with websocket connection status information. 
 
 The `<FeathersGet>`, `<FeathersQuery>`, and `<FeathersFindOne>` (the query components) each recive a query and uses the render prop pattern to pass down fetch state, errors, and nomalized results along with a reference to the app. 
 
@@ -71,16 +71,16 @@ Listeners are automatically cleaned up when the component unmounts
 
 ## 📦 Components
 
-### \<FeathersApp>
+### \<FeathersAppProvider>
 
 Uses the context api to provide access to the.
 This component _must_ wrap all other feathers-rc components.
 
 ```jsx
 <App>
-  <FeathersApp host={example.com} port={3030}>
+  <FeathersAppProvider host={example.com} port={3030}>
     ... your secret sauce
-  </FeathersApp>
+  </FeathersAppProvider>
 </App>
 ```
 
@@ -108,7 +108,7 @@ This component _must_ wrap all other feathers-rc components.
 Passes the feathers app and connection information into the rendered component
 
 ```jsx
-<FeathersApp host={"localhost"} port={3030}>
+<FeathersAppProvider>host={"localhost"} port={3030}>
   <FeathersAppInfo
     render={({ app, connected, host, port }) => (
       <ul>
@@ -138,7 +138,7 @@ None
 Fetches an arbitrary number of
 
 ```jsx
-<FeathersApp host={"localhost"} port={3030}>
+<FeathersAppProvider>host={"localhost"} port={3030}>
   <FeathersQuery
     service="test"
     query={{ roomId: 5 }}
@@ -148,7 +148,7 @@ Fetches an arbitrary number of
     render={({ recordCount }) => <div>Count: {recordCount}</div>}
   />
   <FeathersQuery />
-</FeathersApp>
+</FeathersAppProvider>
 ```
 
 #### Props
@@ -198,9 +198,9 @@ Fetches an arbitrary number of
 Fetches a single object by its id
 
 ```jsx
-<FeathersApp host={"localhost"} port={3030}>
+<FeathersAppProvider host={"localhost"} port={3030}>
   <FeathersGet service="my-service" id={itemId} render={MyDataViewCompoonent} />
-</FeathersApp>
+</FeathersAppProvider>
 ```
 
 #### Input Props

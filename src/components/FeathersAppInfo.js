@@ -1,4 +1,4 @@
-import { withFeathersContext } from "./FeathersApp";
+import { withFeathersContext } from "./FeathersAppProvider";
 import React from "react";
 import propTypes from "prop-types";
 import omit from "lodash/omit";

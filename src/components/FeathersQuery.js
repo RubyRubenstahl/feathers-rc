@@ -1,6 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
-import { withFeathersContext } from "./FeathersApp";
+import { withFeathersContext } from "./FeathersAppProvider";
 import isNil from "lodash/isNil";
 import isArray from "lodash/isArray";
 import isObject from "lodash/isObject";

@@ -1,6 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
-import { withFeathersContext } from "./FeathersApp";
+import { withFeathersContext } from "./FeathersAppProvider";
 
 class FeathersGet extends React.Component {
   state = {
