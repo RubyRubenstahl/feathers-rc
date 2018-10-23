@@ -92,7 +92,7 @@ This component _must_ wrap all other feathers-rc components.
 | host | _string_                | Address of the host to connect to                                                                                                                   |
 | port | _number_                | Websocket port for the host is listening on.                                                                                                        |
 
-#### Child Props
+#### Passed Props
 
 | name        | type      | description                                       |
 | ----------- | --------- | ------------------------------------------------- |
@@ -151,7 +151,7 @@ Fetches an arbitrary number of
 </FeathersAppProvider>
 ```
 
-#### Props
+#### Input Props
 
 | name      | type       | description                                                                                                                                                                                                                                                                                                                      |
 | --------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -163,7 +163,7 @@ Fetches an arbitrary number of
 | realtime  | _boolean_  | If true, subscribe to changes and re-run the query if any changes are detected to the loaded queries.                                                                                                                                                                                                                            |
 | transform | _function_ | Transformation function to run on data before it's passed down.                                                                                                                                                                                                                                                                  |
 
-#### Child Props
+#### Passed Props
 
 | name            | type                     | description                                                                                                                                                                                                                                                                                                                                           |
 | --------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
