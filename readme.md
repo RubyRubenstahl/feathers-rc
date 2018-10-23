@@ -235,3 +235,14 @@ Fetches a single object by its id
 | ---- | ----- | ---------------------------------------------------------------------- |
 | ASC  | 1     | Use with sort prop `<FeathersQuery>` to sort items in ascending order  |
 | DESC | -1    | Use with sort prop `<FeathersQuery>` to sort items in descending order |
+
+# Exported Constants
+
+```jsx
+import { ASC, DESC } from "feathers-rc";```
+
+| name | value | description                                                            |
+| ---- | ----- | ---------------------------------------------------------------------- |
+| ASC  | 1     | Use with sort prop `<FeathersQuery>` to sort items in ascending order  |
+| DESC | -1    | Use with sort prop `<FeathersQuery>` to sort items in descending order |
+
