@@ -239,7 +239,8 @@ Fetches a single object by its id
 # Exported Constants
 
 ```jsx
-import { ASC, DESC } from "feathers-rc";```
+import { ASC, DESC } from "feathers-rc";
+```
 
 | name | value | description                                                            |
 | ---- | ----- | ---------------------------------------------------------------------- |
