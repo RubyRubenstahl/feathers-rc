@@ -234,14 +234,6 @@ Fetches a single object by its id
 | hasData     | _boolean_  | True if the normalized data is not null, empty array, or empty object                                                                                                                                                                                                                                    |
 | service     | _object_   | Direct access to the service the query was run on.                                                                                                                                                                                                                                                       |
 | transform   | _function_ | Transformation function to run on data before it's passed down.                                                                                                                                                                                                                                          |
-
-# Constants
-
-| name | value | description                                                            |
-| ---- | ----- | ---------------------------------------------------------------------- |
-| ASC  | 1     | Use with sort prop `<FeathersQuery>` to sort items in ascending order  |
-| DESC | -1    | Use with sort prop `<FeathersQuery>` to sort items in descending order |
-
 # Exported Constants
 
 ```jsx
