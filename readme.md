@@ -87,7 +87,7 @@ Listeners are automatically cleaned up when the component unmounts.
 
 ### \<FeathersAppProvider>
 
-Uses the context api to provide access to the (???).
+Uses the context api to provide access to the underlying Feathers app to all `feathers-rc` components contained within it.
 This component _must_ wrap all other `feathers-rc` components.
 
 ```jsx
