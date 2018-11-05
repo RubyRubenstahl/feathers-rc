@@ -1,8 +1,8 @@
 # Feathers React Components
 
-[Feathers](https://feathersjs.com) is an elegant, flexible, and powerful nodejs backend API layer that is a pleasure to work with. Feathers React Components was created to leverage the app/service model that makes feathers so easy to work with. 
+[Feathers](https://feathersjs.com) is an elegant, flexible, and powerful nodejs backend API layer that is a pleasure to work with. Feathers React Components was created to leverage the app/service model that makes Feathers so easy to work with. 
 
-Feathers React Components (FRC) is a set of components that make building [Feathers](https://feathersjs.com) frontends in React as delightful as building Feathers backends (and vanilla javascript, using the client library). 
+Feathers React Components (FRC) is a set of components that make building Feathers frontends in React as delightful as building Feathers backends (in vanilla javascript, using the client library). 
 
 ## Awesome 🤘 Show me a contrived example!
 
@@ -32,7 +32,7 @@ export default App;
 
 A feathers app can easily be configured to provide realtime websocket events for CRUD transactions as well as allowing for custom events. 
 
-This barely scratches the surface of what Feathers is. If you're not familiar, I'd strongly encourage you to learn a bit more about feathers before you look at Feathers React Components. 
+This barely scratches the surface of what Feathers is. If you're not familiar, I'd strongly encourage you to learn a bit more about Feathers before you look at Feathers React Components. 
 
 ### 🎯 What does Feathers React Components do for me?
 
@@ -54,9 +54,9 @@ Feathers gives you access to `limit` (number of records per page) and `skip` (in
 
 FRC exposes both  `limit` and `skip` as props for consistency with the Feathers API. However, there are 2 additional props: `pageSize` and `pageIndex`. `pageSize` is essentially an friendely alias for `limit` while `pageIndex` will calculate the correct skip value based on the `pagSize`.
 
-The component rendered by feathersQuery, in addition to the results data, will receive several props describing the state of the pagination, such as `pageSize`, `pageIndex`, and `pageCount`. 
+The component rendered by `<FeathersQuery>`, in addition to the results data, will receive several props describing the state of the pagination, such as `pageSize`, `pageIndex`, and `pageCount`. 
 
-Loading another page can be acheived with the `load[next/previous/first/last]Page` functions passed as props the the children of a `FeathersQuery` compoonent. 
+Loading another page can be acheived with the `load[next/previous/first/last]Page` functions passed as props the the children of a `<FeathersQuery>` compoonent. 
 
 This should allow you to acheive effortless pagination. 
 
@@ -68,7 +68,7 @@ When a `create` or `remove` event is received, the query is simply re-executed a
 
 When a `patch` or `update` event is received, the data stored within the query component's internal state updated to reflect the change. 
 
-Listeners are automatically cleaned up when the component unmounts  
+Listeners are automatically cleaned up when the component unmounts.
 
 ## ⚠️ !!!! IMPORTANT !!!!!
 
@@ -87,8 +87,8 @@ Listeners are automatically cleaned up when the component unmounts
 
 ### \<FeathersAppProvider>
 
-Uses the context api to provide access to the.
-This component _must_ wrap all other feathers-rc components.
+Uses the context api to provide access to the underlying Feathers app to all `feathers-rc` components contained within it.
+This component _must_ wrap all other `feathers-rc` components.
 
 ```jsx
 <App>
@@ -102,7 +102,7 @@ This component _must_ wrap all other feathers-rc components.
 
 | name | type                    | description                                                                                                                                         |
 | ---- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| app  | _object_ (feathers app) | (optional) If you need to customize your app, you can intialize it yourself and pass it in as a prop. If you do, the host and port will be ignored. |
+| app  | _object_ (Feathers app) | (optional) If you need to customize your app, you can intialize it yourself and pass it in as a prop. If you do, the host and port will be ignored. |
 | host | _string_                | Address of the host to connect to                                                                                                                   |
 | port | _number_                | Websocket port for the host is listening on.                                                                                                        |
 
@@ -119,7 +119,7 @@ This component _must_ wrap all other feathers-rc components.
 
 ### 📦 \<FeathersApp>
 
-Passes the feathers app and connection information into the rendered component
+Passes the Feathers app and connection information into the rendered component.
 
 ```jsx
 <FeathersAppProvider>host={"localhost"} port={3030}>
@@ -143,9 +143,9 @@ None
 | name       | type      | description                                                                                                          |
 | ---------- | --------- | -------------------------------------------------------------------------------------------------------------------- |
 | connected  | _Boolean_ | Websocket connection status.                                                                                         |
-| intialized | _Boolean_ | True when a preconfigured app was passed to FeathersAppProvider or the intialization of the default app is complete. |
-| host       | _String_  | Host address of the feathers server.                                                                                 |
-| port       | _Number_  | Host port for the feathers server.                                                                                   |
+| intialized | _Boolean_ | True when a preconfigured app was passed to `<FeathersAppProvider>` or the intialization of the default app is complete. |
+| host       | _String_  | Host address of the Feathers server.                                                                                 |
+| port       | _Number_  | Host port for the Feathers server.                                                                                   |
 
 ### 📦 \<FeathersQuery>
 
@@ -169,22 +169,22 @@ Fetches an arbitrary number of
 
 | name      | type       | description                                                                                                                                                                                                                                                                                                                      |
 | --------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| service   | _string_   | Name of the sevice to run the query on                                  |
-| query     | _number_   | A query to run on the service. The result will be passed to the _data_ prop (normalized for pagination). <br/><br/>The query is formatted as a [standard feathers query](https://docs.feathersjs.com/api/databases/querying.html).                                                                                               |
+| service   | _string_   | Name of the sevice to run the query on.                                  |
+| query     | _number_   | A query to run on the service. The result will be passed to the _data_ prop (normalized for pagination). <br/><br/>The query is formatted as a [standard Feathers query](https://docs.feathersjs.com/api/databases/querying.html).                                                                                               |
 | sort      | _number_   | An object in which the key is the data key to sort by, and the value is equal 1 for ascending or -1 for descending. ASC and DESC constants are exported from the library for your convenience. See the [sorting documentation](https://docs.feathersjs.com/api/databases/querying.html#sort) in the feathers docs for more info. |
 | select    | _string_   | An array of strings containing the keys to include in the response data. If not specified, the entire document is returned.                                                                                                                                                                                                      |
 | pageSize  | _number_   | The number of records per page when pagenating. **note** This prop will automatically calculate the value for `limit`. If both `pageSize` and `limit` are set, `limit` will take precedence. 
 | pageIndex | _number_   | 0 based page number. **note** This prop will automatically calculate the value for `skip`. If both `pageIndex` and `skip` are set, `skip` will take precedence. 
-| limit     | _number_   | Number of records per page. default = 0.                                                                                                                                                                                                                                                                                         |
-| skip      | _number_   | Number of records to skip. default = 10.                                                                                                                                                                                                                                                                                          |
-| realtime  | _boolean_  | If true, subscribe to changes and re-run the query if any changes are detected to the loaded queries.                                                                                                                                                                                                                            |
+| limit     | _number_   | Number of records per page. default = `0`.                                                                                                                                                                                                                                                                                         |
+| skip      | _number_   | Number of records to skip. default = `10`.                                                                                                                                                                                                                                                                                          |
+| realtime  | _boolean_  | If `true`, subscribe to changes and re-run the query if any changes are detected to the loaded queries.                                                                                                                                                                                                                            |
 | transform | _function_ | Transformation function to run on data before it's passed down.                                                                                                                                                                                                                                                                  |
 
 #### Passed Props
 
 | name            | type                     | description                                                                                                                                                                                                                                                                                                                                           |
 | --------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| app             | _object_                 | Access the app directly when needed                                                                                                                                                                                                                                                                                                                   |
+| app             | _object_                 | Access the app directly when needed.                                                                                                                                                                                                                                                                                                                   |
 | service         | _object_                 | Direct access to the service the query was run on.                                                                                                                                                                                                                                                                                                    |
 | data            | _array_ or _null_ 		 | The data returned from the query. <ul><li> Null if the query has not been returned or has no data. </li><li>Contains the data returned from the query.</li><li>Data will be normalized if paginated.</li><li>If a transform function was passed to the parent component, the data will have been processed by the transformation function.</li> </ul> |
 | paginated       | _boolean_                | Indicates whether the response is paginated.                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                              |
@@ -196,18 +196,18 @@ Fetches an arbitrary number of
 | hasData         | _boolean_                | True if the normalized data is not null, empty array, or empty object                                                                                                                                                                                                                                                                                 |
 | limit     	  | _number_   				 | Number of records per page.                                                                                                                                                                                                                                                                                      |
 | skip      	  | _number_   				 | Number of records to skip.                                                                                                                                                                                                                                                                                           |
-| fetching        | _boolean_                | True if there is currently a request in-flight                                                                                                                                                                                                                                                                                                        |
-| service         | _object_                 | Direct access to the service, should you need it                                                                                                                                                                                                                                                                                                      |
+| fetching        | _boolean_                | True if there is currently a request in-flight.                                                                                                                                                                                                                                                                                                        |
+| service         | _object_                 | Direct access to the service, should you need it.                                                                                                                                                                                                                                                                                                      |
 | loadPrevPage()  | _function_               | Run the query for the prev page. Ignored if we are on the first page.                                                                                                                                                                                                                                                                                 |
 | loadNextPage()  | _function_               | Run the query for the prev page. Ignored if we are on the first page.                                                                                                                                                                                                                                                                                 |
-| laodFirstPage() | _function_               | Run the query for the first page;                                                                                                                                                                                                                                                                                                                     |
-| loadLastPage()  | _function_               | Run the query for the last page;                                                                                                                                                                                                                                                                                                                      |
-| loadPage(_number_ pageIndex)  |	_function_               | Run the query for the last page;                                                                                                                                                                                                                                                                                                                      |
+| laodFirstPage() | _function_               | Run the query for the first page.                                                                                                                                                                                                                                                                                                                     |
+| loadLastPage()  | _function_               | Run the query for the last page.                                                                                                                                                                                                                                                                                                                      |
+| loadPage(_number_ pageIndex)  |	_function_               | Run the query for the last page.                                                                                                                                                                                                                                                                                                                      |
 
 
 ### 📦 \<FeathersGet>
 
-Fetches a single object by its id
+Fetches a single object by its `id`.
 
 ```jsx
 <FeathersAppProvider host={"localhost"} port={3030}>
@@ -219,19 +219,19 @@ Fetches a single object by its id
 
 | name    | type              | description                                                             |
 | ------- | ----------------- | ----------------------------------------------------------------------- |
-| service | _string_          | Name of the sevice to run the query on                                  |
-| id      | _string_          | Id of the resource to request                                           |
+| service | _string_          | Name of the sevice to run the query on.                                  |
+| id      | _string_          | Id of the resource to request.                                           |
 | render  | _react component_ | The component or function to render. It will be passed the below props. |
 
 #### Passed Props
 
 | name        | type       | description                                                                                                                                                                                                                                                                                              |
 | ----------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| app         | _object_   | Direct access to the feathers app, should you need it                                                                                                                                                                                                                                                    |
+| app         | _object_   | Direct access to the Feathers app, should you need it.                                                                                                                                                                                                                                                    |
 | data        | _object_ or _null_  | The data returned from the query. <ul> <li> Null if the query has not been returned or has no data.</li><li> Contains the data returned from the query.</li><li> If a transform function was passed to the parent component, the data will have been processed by the transformation function.</li></ul> |
 | error       | [_Feathers Error_](https://github.com/feathersjs/errors)                 | Error object, if holding any error producted by the most recent request. Will be null if no error was reported.                                                                                                                                                                                                                                       |
-| fetching    | _boolean_  | True if there is currently a request in-flight                                                                                                                                                                                                                                                           |
-| hasData     | _boolean_  | True if the normalized data is not null, empty array, or empty object                                                                                                                                                                                                                                    |
+| fetching    | _boolean_  | `True` if there is currently a request in-flight.                                                                                                                                                                                                                                                           |
+| hasData     | _boolean_  | `True` if the normalized data is not null, empty array, or empty object.                                                                                                                                                                                                                                    |
 | service     | _object_   | Direct access to the service the query was run on.                                                                                                                                                                                                                                                       |
 | transform   | _function_ | Transformation function to run on data before it's passed down.                                                                                                                                                                                                                                          |
 # Exported Constants
@@ -242,6 +242,6 @@ import { ASC, DESC } from "feathers-rc";
 
 | name | value | description                                                            |
 | ---- | ----- | ---------------------------------------------------------------------- |
-| ASC  | 1     | Use with sort prop `<FeathersQuery>` to sort items in ascending order  |
-| DESC | -1    | Use with sort prop `<FeathersQuery>` to sort items in descending order |
+| ASC  | 1     | Use with sort prop `<FeathersQuery>` to sort items in ascending order.  |
+| DESC | -1    | Use with sort prop `<FeathersQuery>` to sort items in descending order. |
 
